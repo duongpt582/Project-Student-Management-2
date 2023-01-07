@@ -5,12 +5,13 @@
 package project.student.management.model;
 
 import java.util.ArrayList;
+import project.student.management.interfaces.XetTotNghiep;
 
 /**
  *
  * @author duongpt
  */
-public abstract class SinhVien {
+public abstract class SinhVien implements XetTotNghiep{
     private String hoTen;
     private String maSV;
     private String gioiTinh;
@@ -73,6 +74,11 @@ public abstract class SinhVien {
 
     public void setListMonHoc(ArrayList<MonHoc> listMonHoc) {
         this.listMonHoc = listMonHoc;
+    }
+
+    @Override
+    public boolean xetTotNghiep() {
+        return true;
     }
     
     

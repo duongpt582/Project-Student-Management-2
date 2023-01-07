@@ -16,4 +16,18 @@ public class MonHoc {
     private double diemGK;
     private double diemCK;
     private int soTinChi;
+
+    public MonHoc(String tenMonHoc, String maMonHoc, String hocKy, double trongSo, double diemGK, double diemCK, int soTinChi) {
+        this.tenMonHoc = tenMonHoc;
+        this.maMonHoc = maMonHoc;
+        this.hocKy = hocKy;
+        this.trongSo = trongSo;
+        this.diemGK = diemGK;
+        this.diemCK = diemCK;
+        this.soTinChi = soTinChi;
+    }
+    
+    public double tinhDiemTB() {
+        return (diemGK * trongSo + diemCK * trongSo);
+    }
 }
