@@ -1,4 +1,4 @@
-
+// do van hai 20207600
 package project.student.management.view;
 
 import java.sql.SQLException;
@@ -12,7 +12,7 @@ import project.student.management.model.DanhMucBean;
 
 public class Menu extends javax.swing.JFrame {
 
-
+// set chuyen man hinh
     public Menu() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);

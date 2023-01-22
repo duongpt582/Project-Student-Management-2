@@ -2,6 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+// do van hai 20207600
 package project.student.management.controller;
 
 import java.awt.BorderLayout;
@@ -34,11 +35,9 @@ public class ChuyenManHinh {
     public ChuyenManHinh(JPanel panelRoot) {
         this.root = panelRoot;
     }
-    
+    // xoa man hinh cu va chuyen sang man hinh moi
    public void setView(JPanel panelItem, JLabel labelItem ) throws SQLException{
-//       kindSelected ="Menu" ;
-//       jpnItem.setBackground(new Color(255, 255, 255));
-//       jlbItem.setBackground(new Color(255, 255, 255));
+
       
        root.removeAll();
        root.setLayout(new BorderLayout());
@@ -55,7 +54,7 @@ public class ChuyenManHinh {
        }
        
    }
-   
+   // tao su kien click chuot cho label
    class LabelEvent implements MouseListener{
        
        private JPanel node ;

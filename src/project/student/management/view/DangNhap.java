@@ -1,4 +1,4 @@
-// do van hai
+// do van hai 20207600
 package project.student.management.view;
 
 import java.awt.event.KeyEvent;
@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 
 public class DangNhap extends javax.swing.JFrame {
 
-    
+    // set tai khoan, mat khau mac dinh
     private String username = "admin";
     private char[] password = {'1','2','3','4'};
     
@@ -138,7 +138,7 @@ public class DangNhap extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    // click chuot vao text field se reset 
     private void textField_DangNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textField_DangNhapMouseClicked
         // TODO add your handling code here:
         textField_DangNhap.setText("");
@@ -148,7 +148,7 @@ public class DangNhap extends javax.swing.JFrame {
         // TODO add your handling code here:
         passwordField.setText("");
     }//GEN-LAST:event_passwordFieldMouseClicked
-
+      // set hien mat khau
     private void hienMatKhau_checkboxStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_hienMatKhau_checkboxStateChanged
         // TODO add your handling code here:
         if(hienMatKhau_checkbox.isSelected()) {
@@ -158,7 +158,7 @@ public class DangNhap extends javax.swing.JFrame {
             passwordField.setEchoChar('*');
         }
     }//GEN-LAST:event_hienMatKhau_checkboxStateChanged
-
+// check tai khoan mat khau 
     private void dangNhap_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dangNhap_buttonMouseClicked
         // TODO add your handling code here:
          String userInput;
@@ -176,7 +176,7 @@ public class DangNhap extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(null, "SAI","",JOptionPane.ERROR_MESSAGE);
          }
     }//GEN-LAST:event_dangNhap_buttonMouseClicked
-
+ // dang nhap bang phim enter
     private void passwordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordFieldKeyPressed
         // TODO add your handling code here:
         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
