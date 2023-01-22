@@ -44,6 +44,17 @@ public class GiaoDienMonHoc extends javax.swing.JPanel {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(100);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(30);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(120);
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(30);
+            jTable1.getColumnModel().getColumn(4).setPreferredWidth(25);
+            jTable1.getColumnModel().getColumn(5).setPreferredWidth(20);
+            jTable1.getColumnModel().getColumn(7).setPreferredWidth(20);
+            jTable1.getColumnModel().getColumn(8).setPreferredWidth(20);
+            jTable1.getColumnModel().getColumn(9).setPreferredWidth(20);
+        }
 
         timkiemField.setText("Nhập tên môn học...");
         timkiemField.addMouseListener(new java.awt.event.MouseAdapter() {

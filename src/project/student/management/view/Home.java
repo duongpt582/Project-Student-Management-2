@@ -55,7 +55,7 @@ public class Home extends javax.swing.JPanel {
             }
         });
 
-        kButton2.setText("Sửa sinh viên");
+        kButton2.setText("Chỉnh sửa");
 
         kButton3.setText("Xóa sinh viên");
 

@@ -97,7 +97,7 @@ public class Menu extends javax.swing.JFrame {
         chuongtrinhPanel.setkStartColor(new java.awt.Color(0, 204, 204));
 
         chuongtrinhLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/program.png"))); // NOI18N
-        chuongtrinhLabel.setText("Chương trình");
+        chuongtrinhLabel.setText("DS sinh viên");
 
         javax.swing.GroupLayout chuongtrinhPanelLayout = new javax.swing.GroupLayout(chuongtrinhPanel);
         chuongtrinhPanel.setLayout(chuongtrinhPanelLayout);
@@ -119,7 +119,7 @@ public class Menu extends javax.swing.JFrame {
         monhocPanel.setkStartColor(new java.awt.Color(0, 204, 204));
 
         monhocLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/books-stack-of-three.png"))); // NOI18N
-        monhocLabel.setText("Môc học");
+        monhocLabel.setText("DS đăng ký");
 
         javax.swing.GroupLayout monhocPanelLayout = new javax.swing.GroupLayout(monhocPanel);
         monhocPanel.setLayout(monhocPanelLayout);
@@ -127,7 +127,7 @@ public class Menu extends javax.swing.JFrame {
             monhocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(monhocPanelLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(monhocLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(monhocLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         monhocPanelLayout.setVerticalGroup(

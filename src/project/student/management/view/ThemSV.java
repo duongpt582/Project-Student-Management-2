@@ -26,7 +26,7 @@ public class ThemSV extends javax.swing.JFrame {
         ButtonGroup loaiSVButtonGroup = new ButtonGroup();
         loaiSVButtonGroup.add(chuontrinhmauButton);
         loaiSVButtonGroup.add(tinchiButton);
-        
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
