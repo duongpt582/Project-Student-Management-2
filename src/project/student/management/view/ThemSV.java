@@ -51,7 +51,6 @@ public class ThemSV extends javax.swing.JFrame {
         ngaysinhTextField = new javax.swing.JTextField();
         emailTextField = new javax.swing.JTextField();
         khoahocTextField = new javax.swing.JTextField();
-        nganhhocTextField = new javax.swing.JTextField();
         themButton = new com.k33ptoo.components.KButton();
         resetButton = new com.k33ptoo.components.KButton();
         namRadioBton = new javax.swing.JRadioButton();
@@ -59,6 +58,7 @@ public class ThemSV extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         tinchiButton = new javax.swing.JRadioButton();
         chuontrinhmauButton = new javax.swing.JRadioButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,6 +106,9 @@ public class ThemSV extends javax.swing.JFrame {
 
         chuontrinhmauButton.setText("Chương trình mẫu");
 
+        jComboBox1.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Công nghệ thông tin", "Quản trị kinh doanh", "Kỹ thuật Cơ điện tử" }));
+
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
         kGradientPanel1Layout.setHorizontalGroup(
@@ -125,23 +128,23 @@ public class ThemSV extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(hotenTextField)
-                            .addComponent(masvTextField)
-                            .addComponent(ngaysinhTextField)
-                            .addComponent(emailTextField)
-                            .addComponent(khoahocTextField)
-                            .addComponent(nganhhocTextField)
-                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                .addComponent(namRadioBton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(nuRadiobuton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(98, Short.MAX_VALUE))
-                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
                         .addComponent(tinchiButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(chuontrinhmauButton)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(hotenTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(masvTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ngaysinhTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(emailTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(khoahocTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, kGradientPanel1Layout.createSequentialGroup()
+                                .addComponent(namRadioBton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(nuRadiobuton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(98, Short.MAX_VALUE))))
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(themButton, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -185,7 +188,7 @@ public class ThemSV extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(nganhhocTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
@@ -220,7 +223,7 @@ public class ThemSV extends javax.swing.JFrame {
         ngaysinhTextField.setText("");
         emailTextField.setText("");
         khoahocTextField.setText("");
-        nganhhocTextField.setText("");
+        
     }//GEN-LAST:event_resetButtonMouseClicked
 
     /**
@@ -262,6 +265,7 @@ public class ThemSV extends javax.swing.JFrame {
     private javax.swing.JRadioButton chuontrinhmauButton;
     private javax.swing.JTextField emailTextField;
     private javax.swing.JTextField hotenTextField;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -274,7 +278,6 @@ public class ThemSV extends javax.swing.JFrame {
     private javax.swing.JTextField khoahocTextField;
     private javax.swing.JTextField masvTextField;
     private javax.swing.JRadioButton namRadioBton;
-    private javax.swing.JTextField nganhhocTextField;
     private javax.swing.JTextField ngaysinhTextField;
     private javax.swing.JRadioButton nuRadiobuton;
     private com.k33ptoo.components.KButton resetButton;

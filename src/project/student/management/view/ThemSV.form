@@ -63,26 +63,26 @@
                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="hotenTextField" max="32767" attributes="0"/>
-                              <Component id="masvTextField" max="32767" attributes="0"/>
-                              <Component id="ngaysinhTextField" max="32767" attributes="0"/>
-                              <Component id="emailTextField" max="32767" attributes="0"/>
-                              <Component id="khoahocTextField" max="32767" attributes="0"/>
-                              <Component id="nganhhocTextField" max="32767" attributes="0"/>
-                              <Group type="102" attributes="0">
+                          <Component id="tinchiButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="chuontrinhmauButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jComboBox1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="hotenTextField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="masvTextField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="ngaysinhTextField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="emailTextField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="khoahocTextField" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="namRadioBton" min="-2" pref="98" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="nuRadiobuton" min="-2" pref="98" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace pref="98" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="tinchiButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="chuontrinhmauButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -140,7 +140,7 @@
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="nganhhocTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -225,8 +225,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="khoahocTextField">
         </Component>
-        <Component class="javax.swing.JTextField" name="nganhhocTextField">
-        </Component>
         <Component class="com.k33ptoo.components.KButton" name="themButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
@@ -267,6 +265,23 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Ch&#x1b0;&#x1a1;ng tr&#xec;nh m&#x1eab;u"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jComboBox1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="2"/>
+            </Property>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="3">
+                <StringItem index="0" value="C&#xf4;ng ngh&#x1ec7; th&#xf4;ng tin"/>
+                <StringItem index="1" value="Qu&#x1ea3;n tr&#x1ecb; kinh doanh"/>
+                <StringItem index="2" value="K&#x1ef9; thu&#x1ead;t C&#x1a1; &#x111;i&#x1ec7;n t&#x1eed;"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
