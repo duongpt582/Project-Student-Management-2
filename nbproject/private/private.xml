@@ -3,15 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Project-Student-Management/src/project/student/management/view/TotNghiep.java</file>
-            <file>file:/D:/Project-Student-Management/src/project/student/management/view/ThemDiem.java</file>
-            <file>file:/D:/Project-Student-Management/src/project/student/management/view/Menu.java</file>
-            <file>file:/D:/Project-Student-Management/src/project/student/management/view/Home.java</file>
-            <file>file:/D:/Project-Student-Management/src/project/student/management/controller/ChuyenManHinh.java</file>
-            <file>file:/D:/Project-Student-Management/src/project/student/management/view/ChuongTrinh.java</file>
-            <file>file:/D:/Project-Student-Management/src/project/student/management/view/DangNhap.java</file>
-            <file>file:/D:/Project-Student-Management/src/project/student/management/view/GiaoDienMonHoc.java</file>
-            <file>file:/D:/Project-Student-Management/src/project/student/management/view/ThemSV.java</file>
+            <file>file:/D:/OOP/Project-Student-Management/src/project/student/management/view/Menu.java</file>
+            <file>file:/D:/OOP/Project-Student-Management/src/project/student/management/view/GiaoDienMonHoc.java</file>
+            <file>file:/D:/OOP/Project-Student-Management/src/project/student/management/model/SinhVienTinChi.java</file>
+            <file>file:/D:/OOP/Project-Student-Management/src/project/student/management/view/DangNhap.java</file>
+            <file>file:/D:/OOP/Project-Student-Management/src/project/student/management/model/SinhVien.java</file>
+            <file>file:/D:/OOP/Project-Student-Management/src/project/student/management/interfaces/QuanLy.java</file>
+            <file>file:/D:/OOP/Project-Student-Management/src/project/student/management/view/ThemSV.java</file>
+            <file>file:/D:/OOP/Project-Student-Management/src/project/student/management/model/SinhVienCTMau.java</file>
+            <file>file:/D:/OOP/Project-Student-Management/src/project/student/management/view/TotNghiep.java</file>
+            <file>file:/D:/OOP/Project-Student-Management/src/project/student/management/view/Home.java</file>
+            <file>file:/D:/OOP/Project-Student-Management/src/project/student/management/controller/QuanLyImpl.java</file>
         </group>
     </open-files>
 </project-private>

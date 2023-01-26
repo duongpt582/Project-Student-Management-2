@@ -13,10 +13,10 @@ import project.student.management.model.SinhVien;
  */
 public interface QuanLy {
     public void themSV(SinhVien sinhVien);
-    public void xoaSV(int maSV);
-    public void suaThongTinSV(int maSV, SinhVien sinhVien);
+    public void xoaSV(String maSV);
+    public void suaThongTinSV(String maSV, SinhVien sinhVien);
     public SinhVien timKiemSV(String valueSearch);
-    public List<SinhVien> inDSSV();
+    public List<SinhVien> inDSSV(String loaiSV);
     public List<SinhVien> inDSSVDuocTotNghiep();
     
 }

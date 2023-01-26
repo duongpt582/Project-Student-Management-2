@@ -13,8 +13,8 @@ import java.util.ArrayList;
 public class SinhVienTinChi extends SinhVien{
     private int soTinChiHoanThanh;
 
-    public SinhVienTinChi(int soTinChiHoanThanh, String hoTen, String maSV, String gioiTinh, String email, String khoaHoc, ArrayList<MonHoc> listMonHoc) {
-        super(hoTen, maSV, gioiTinh, email, khoaHoc, listMonHoc);
+    public SinhVienTinChi(int soTinChiHoanThanh, String hoTen, String maSV, String gioiTinh, String ngaySinh, String email, String khoaHoc, String nganhHoc, ArrayList<MonHoc> listMonHoc) {
+        super(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc, listMonHoc);
         this.soTinChiHoanThanh = soTinChiHoanThanh;
     }
 

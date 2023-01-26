@@ -14,8 +14,8 @@ public class SinhVienCTMau extends SinhVien{
     private int soMonHocHoanThanh;
     private double diemTB;
 
-    public SinhVienCTMau(int soMonHocHoanThanh, double diemTB, String hoTen, String maSV, String gioiTinh, String email, String khoaHoc, ArrayList<MonHoc> listMonHoc) {
-        super(hoTen, maSV, gioiTinh, email, khoaHoc, listMonHoc);
+    public SinhVienCTMau(int soMonHocHoanThanh, double diemTB, String hoTen, String maSV, String gioiTinh, String ngaySinh, String email, String khoaHoc, String nganhHoc, ArrayList<MonHoc> listMonHoc) {
+        super(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc, listMonHoc);
         this.soMonHocHoanThanh = soMonHocHoanThanh;
         this.diemTB = diemTB;
     }

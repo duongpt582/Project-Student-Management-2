@@ -2,7 +2,10 @@
 package project.student.management.view;
 
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class DangNhap extends javax.swing.JFrame {
@@ -160,40 +163,50 @@ public class DangNhap extends javax.swing.JFrame {
     }//GEN-LAST:event_hienMatKhau_checkboxStateChanged
 // check tai khoan mat khau 
     private void dangNhap_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dangNhap_buttonMouseClicked
-        // TODO add your handling code here:
-         String userInput;
-        char[] passwordInput;
-        
-        userInput = textField_DangNhap.getText();
-        passwordInput = passwordField.getPassword();
-        
-        if((username.equals(userInput)) && (Arrays.equals(password, passwordInput))){
-                    JOptionPane.showMessageDialog(null, "Bạn đã nhập chuẩn.","",JOptionPane.PLAIN_MESSAGE);
-                                    
-                    dispose();
-                }
-         else {
-             JOptionPane.showMessageDialog(null, "SAI","",JOptionPane.ERROR_MESSAGE);
-         }
+        try {
+            // TODO add your handling code here:
+            String userInput;
+            char[] passwordInput;
+            Menu menu = new Menu();
+            
+            userInput = textField_DangNhap.getText();
+            passwordInput = passwordField.getPassword();
+            
+            if((username.equals(userInput)) && (Arrays.equals(password, passwordInput))){
+                JOptionPane.showMessageDialog(null, "Bạn đã nhập chuẩn.","",JOptionPane.PLAIN_MESSAGE);
+                menu.setVisible(true);
+                dispose();
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "SAI","",JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DangNhap.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_dangNhap_buttonMouseClicked
  // dang nhap bang phim enter
     private void passwordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordFieldKeyPressed
         // TODO add your handling code here:
         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-             String userInput;
-             char[] passwordInput;
-        
-        userInput = textField_DangNhap.getText();
-        passwordInput = passwordField.getPassword();
-        
-        if((username.equals(userInput)) && (Arrays.equals(password, passwordInput))){
+            try {
+                String userInput;
+                char[] passwordInput;
+                Menu menu = new Menu();
+                
+                
+                userInput = textField_DangNhap.getText();
+                passwordInput = passwordField.getPassword();
+                
+                if((username.equals(userInput)) && (Arrays.equals(password, passwordInput))){
                     JOptionPane.showMessageDialog(null, "Bạn đã nhập chuẩn.","",JOptionPane.PLAIN_MESSAGE);
-                                    
+                    menu.setVisible(true);
                     dispose();
                 }
-         else {
-             JOptionPane.showMessageDialog(null, "SAI","",JOptionPane.ERROR_MESSAGE);
-         }
+                else {
+                    JOptionPane.showMessageDialog(null, "SAI","",JOptionPane.ERROR_MESSAGE);
+                }  } catch (SQLException ex) {
+                Logger.getLogger(DangNhap.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_passwordFieldKeyPressed
 
