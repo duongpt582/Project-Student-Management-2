@@ -4,13 +4,18 @@
  */
 // do van hai 20207600
 package project.student.management.view;
+import java.util.*;
+import javax.swing.table.DefaultTableModel;
+import project.student.management.controller.QuanLyImpl;
+import project.student.management.model.SinhVien;
 
 /**
  *
  * @author seape
  */
 public class ChuongTrinh extends javax.swing.JPanel {
-
+    QuanLyImpl ql = new QuanLyImpl();
+    DefaultTableModel model;
     /**
      * Creates new form Home
      */
@@ -44,11 +49,21 @@ public class ChuongTrinh extends javax.swing.JPanel {
                 chuongtrinh_tinchiButtonMouseClicked(evt);
             }
         });
+        chuongtrinh_tinchiButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chuongtrinh_tinchiButtonActionPerformed(evt);
+            }
+        });
 
         chuongtrinh_mauButton.setText("Chương trình mẫu");
         chuongtrinh_mauButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 chuongtrinh_mauButtonMouseClicked(evt);
+            }
+        });
+        chuongtrinh_mauButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chuongtrinh_mauButtonActionPerformed(evt);
             }
         });
 
@@ -115,6 +130,44 @@ public class ChuongTrinh extends javax.swing.JPanel {
         // TODO add your handling code here:
         loaisvLabel.setText("Sinh viên chương trình mẫu");
     }//GEN-LAST:event_chuongtrinh_mauButtonMouseClicked
+
+    private void chuongtrinh_tinchiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chuongtrinh_tinchiButtonActionPerformed
+        // TODO add your handling code here:
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        List<SinhVien> listSV = ql.inDSSV("TC");
+        for (SinhVien sinhVien : listSV) {
+            String hoTen = sinhVien.getHoTen();
+            String maSV = sinhVien.getMaSV();
+            String gioiTinh = sinhVien.getGioiTinh();
+            String ngaySinh = sinhVien.getNgaySinh();
+            String email = sinhVien.getEmail();
+            int khoaHoc = sinhVien.getKhoaHoc();
+            String nganhHoc = sinhVien.getNganhHoc();
+            model.addRow(new Object[]{
+            hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc
+        });
+        }
+    }//GEN-LAST:event_chuongtrinh_tinchiButtonActionPerformed
+
+    private void chuongtrinh_mauButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chuongtrinh_mauButtonActionPerformed
+        // TODO add your handling code here:
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        List<SinhVien> listSV = ql.inDSSV("CTM");
+        for (SinhVien sinhVien : listSV) {
+            String hoTen = sinhVien.getHoTen();
+            String maSV = sinhVien.getMaSV();
+            String gioiTinh = sinhVien.getGioiTinh();
+            String ngaySinh = sinhVien.getNgaySinh();
+            String email = sinhVien.getEmail();
+            int khoaHoc = sinhVien.getKhoaHoc();
+            String nganhHoc = sinhVien.getNganhHoc();
+            model.addRow(new Object[]{
+            hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc
+        });
+        }
+    }//GEN-LAST:event_chuongtrinh_mauButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

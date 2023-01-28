@@ -3,18 +3,43 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package project.student.management.view;
+import java.awt.event.KeyEvent;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import project.student.management.controller.QuanLyImpl;
+import project.student.management.database.DBConnection;
+import project.student.management.model.SinhVien;
+import project.student.management.model.SinhVienCTMau;
+import project.student.management.model.SinhVienTinChi;
 
 /**
  *
  * @author seape
  */
 public class Home extends javax.swing.JPanel {
-
+    QuanLyImpl ql = new QuanLyImpl();
+    private Connection conn;
+    private PreparedStatement ps;
+    DefaultTableModel model;
+    private String loaiSV;
+    private String hoTen;
+    private String maSV;
+    private String gioiTinh;
+    private String ngaySinh;
+    private String email;
+    private int khoaHoc;
+    private String nganhHoc;
     /**
      * Creates new form Home
      */
     public Home() {
         initComponents();
+        showTable();
     }
 
     /**
@@ -30,8 +55,8 @@ public class Home extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         kGradientPanel1 = new com.k33ptoo.components.KGradientPanel();
         themButton = new com.k33ptoo.components.KButton();
-        kButton2 = new com.k33ptoo.components.KButton();
-        kButton3 = new com.k33ptoo.components.KButton();
+        suaBtn = new com.k33ptoo.components.KButton();
+        xoaBtn = new com.k33ptoo.components.KButton();
         timkiemField = new javax.swing.JTextField();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -39,9 +64,14 @@ public class Home extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Họ tên", "Mã SV", "Giới tính", "Ngày sinh", "Email", "Khóa học", "Ngành học", "Loại SV"
+                "Loại SV", "Họ tên", "Mã SV", "Giới tính", "Ngày sinh", "Email", "Khóa học", "Ngành học"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         kGradientPanel1.setkEndColor(new java.awt.Color(255, 255, 255));
@@ -54,15 +84,35 @@ public class Home extends javax.swing.JPanel {
                 themButtonMouseClicked(evt);
             }
         });
+        themButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                themButtonActionPerformed(evt);
+            }
+        });
 
-        kButton2.setText("Chỉnh sửa");
+        suaBtn.setText("Chỉnh sửa");
+        suaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                suaBtnActionPerformed(evt);
+            }
+        });
 
-        kButton3.setText("Xóa sinh viên");
+        xoaBtn.setText("Xóa sinh viên");
+        xoaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                xoaBtnActionPerformed(evt);
+            }
+        });
 
-        timkiemField.setText("Tìm kiếm với tên, mã sinh viên, khoa học");
+        timkiemField.setText("Tìm kiếm với tên, mã sinh viên, khóa học");
         timkiemField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 timkiemFieldMouseClicked(evt);
+            }
+        });
+        timkiemField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                timkiemFieldKeyPressed(evt);
             }
         });
 
@@ -74,10 +124,10 @@ public class Home extends javax.swing.JPanel {
                 .addGap(69, 69, 69)
                 .addComponent(themButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
-                .addComponent(kButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(187, 187, 187)
-                .addComponent(kButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(114, 114, 114))
+                .addComponent(suaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(175, 175, 175)
+                .addComponent(xoaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(126, 126, 126))
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                 .addGap(255, 255, 255)
                 .addComponent(timkiemField, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -91,8 +141,8 @@ public class Home extends javax.swing.JPanel {
                 .addGap(55, 55, 55)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(themButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(kButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(kButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(suaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(xoaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
@@ -120,18 +170,128 @@ public class Home extends javax.swing.JPanel {
 
     private void themButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_themButtonMouseClicked
         // TODO add your handling code here:
-        ThemSV themSV = new ThemSV();
-        themSV.setVisible(true);
+//        ThemSV themSV = new ThemSV();
+//        themSV.setVisible(true);
     }//GEN-LAST:event_themButtonMouseClicked
 
+    private void xoaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoaBtnActionPerformed
+        // TODO add your handling code here:
+        if(jTable1.getSelectedRowCount() == 0)
+            JOptionPane.showMessageDialog(null, "Hãy chọn một sinh viên để xóa!");
+        else if(jTable1.getSelectedRowCount() > 1)
+            JOptionPane.showMessageDialog(null, "Chỉ được chọn một sinh viên để xóa!");
+        else{
+            if(JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa sinh viên khỏi danh sách không?",
+                    "Warning", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                ql.xoaSV(maSV);
+                JOptionPane.showMessageDialog(null, "Xóa sinh viên thành công!");
+                showTable();
+            } 
+        }
+    }//GEN-LAST:event_xoaBtnActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        if(jTable1.getSelectedRowCount() == 1){
+            loaiSV = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+            hoTen = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 1);
+            maSV = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 2);
+            gioiTinh = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 3);
+            ngaySinh = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 4);
+            email = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 5);
+            khoaHoc = (int) jTable1.getValueAt(jTable1.getSelectedRow(), 6);
+            nganhHoc = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 7);
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void themButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themButtonActionPerformed
+        // TODO add your handling code here:
+        ThemSV themSV = new ThemSV();
+        themSV.setVisible(true);
+        if(!themSV.isVisible()){
+            showTable();
+        }
+    }//GEN-LAST:event_themButtonActionPerformed
+
+    private void suaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suaBtnActionPerformed
+        // TODO add your handling code here:
+        SinhVien sinhVien = null;
+        if(loaiSV.equals("CTM"))
+            sinhVien = new SinhVienCTMau(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
+        else sinhVien = new SinhVienTinChi(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
+        if(jTable1.getSelectedRowCount() == 0)
+            JOptionPane.showMessageDialog(null, "Hãy chọn một sinh viên để chỉnh sửa!");
+        else if(jTable1.getSelectedRowCount() > 1)
+            JOptionPane.showMessageDialog(null, "Chỉ được chọn một sinh viên để chỉnh sửa");
+        else{
+            if(JOptionPane.showConfirmDialog(null, "Bạn có muốn chỉnh sửa thông tin của sinh viên này không?",
+                    "Warning", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                ql.suaThongTinSV(maSV, sinhVien);
+                JOptionPane.showMessageDialog(null, "Chỉnh sửa thành công!");
+                showTable();
+            } 
+        }
+    }//GEN-LAST:event_suaBtnActionPerformed
+
+    private void timkiemFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_timkiemFieldKeyPressed
+        // TODO add your handling code here:
+        List<SinhVien> listSV = ql.timKiemSV(timkiemField.getText());
+        model = (DefaultTableModel) jTable1.getModel();
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            model.setRowCount(0);
+            for (SinhVien sinhVien : listSV) {
+                String loaiSV;
+                if(sinhVien instanceof SinhVienCTMau)
+                    loaiSV = "CTM";
+                else loaiSV ="TC";
+                String hoTen = sinhVien.getHoTen();
+                String maSV = sinhVien.getMaSV();
+                String gioiTinh = sinhVien.getGioiTinh();
+                String ngaySinh = sinhVien.getNgaySinh();
+                String email = sinhVien.getEmail();
+                int khoaHoc = sinhVien.getKhoaHoc();
+                String nganhHoc = sinhVien.getNganhHoc();
+                model.addRow(new Object[]{
+                loaiSV, hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc
+        });
+            }
+        }
+    }//GEN-LAST:event_timkiemFieldKeyPressed
+
+    private void showTable(){
+        try {
+            model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement("SELECT * FROM dssv");
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                String loaiSV = rs.getString("loaiSV");
+                String hoTen = rs.getString("hoTen");
+                String maSV = rs.getString("maSV");
+                String gioiTinh = rs.getString("gioiTinh");
+                String ngaySinh = rs.getString("ngaySinh");
+                String email = rs.getString("Email");
+                int khoaHoc = rs.getInt("khoahoc");
+                String nganhHoc = rs.getString("nganhHoc");
+                
+                model.addRow(new Object[]{
+                    loaiSV, hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc
+                });
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private com.k33ptoo.components.KButton kButton2;
-    private com.k33ptoo.components.KButton kButton3;
     private com.k33ptoo.components.KGradientPanel kGradientPanel1;
+    private com.k33ptoo.components.KButton suaBtn;
     private com.k33ptoo.components.KButton themButton;
     private javax.swing.JTextField timkiemField;
+    private com.k33ptoo.components.KButton xoaBtn;
     // End of variables declaration//GEN-END:variables
 }

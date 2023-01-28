@@ -38,7 +38,7 @@ public class QuanLyImpl implements QuanLy{
             ps.setString(4, sinhVien.getGioiTinh());
             ps.setString(5, sinhVien.getNgaySinh());
             ps.setString(6, sinhVien.getEmail());
-            ps.setString(7, sinhVien.getKhoaHoc());
+            ps.setInt(7, sinhVien.getKhoaHoc());
             ps.setString(8, sinhVien.getNganhHoc());
             ps.executeUpdate();
             conn.close();
@@ -74,7 +74,7 @@ public class QuanLyImpl implements QuanLy{
             ps.setString(4, sinhVien.getGioiTinh());
             ps.setString(5, sinhVien.getNgaySinh());
             ps.setString(6, sinhVien.getEmail());
-            ps.setString(7, sinhVien.getKhoaHoc());
+            ps.setInt(7, sinhVien.getKhoaHoc());
             ps.setString(8, sinhVien.getNganhHoc());
             ps.setString(9, maSV);
             ps.executeUpdate();
@@ -86,36 +86,69 @@ public class QuanLyImpl implements QuanLy{
     }
 
     @Override
-    public SinhVien timKiemSV(String valueSearch) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<SinhVien> timKiemSV(String valueSearch) {
+        List<SinhVien> listSV = new ArrayList<SinhVien>();
+        SinhVien sinhVien = null;
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement("SELECT * FROM dssv WHERE hoTen like ? or maSV like ? or khoaHoc like ?");
+            ps.setString(1, "%" + valueSearch + "%");
+            ps.setString(2, "%" + valueSearch + "%");
+            ps.setString(3, "%" + valueSearch + "%");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                String loaiSV = rs.getString("loaiSV");
+                String hoTen = rs.getString("hoTen");
+                String maSV = rs.getString("maSV");
+                String gioiTinh = rs.getString("gioiTinh");
+                String ngaySinh = rs.getString("ngaySinh");
+                String email = rs.getString("Email");
+                int khoaHoc = rs.getInt("khoaHoc");
+                String nganhHoc = rs.getString("nganhHoc");
+                
+                if(loaiSV.equals("CTM"))
+                    sinhVien = new SinhVienCTMau(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
+                else
+                    sinhVien = new SinhVienTinChi(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
+                listSV.add(sinhVien);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(QuanLyImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listSV;
     }
 
     @Override
     public List<SinhVien> inDSSV(String loaiSV) {
         List<SinhVien> listSV = new ArrayList<SinhVien>();
-        SinhVien sinhVien;
-//        try{
-//            conn = DBConnection.getConnection();
-//            ps = conn.prepareStatement("SELECT * FROM dssv WHERE loaiSV=?");
-//            ps.setString(1, loaiSV);
-//            ResultSet rs = ps.executeQuery();
-//            while(rs.next()){
-//                String loaiSV1 = rs.getString("loaiSV");
-//                String hoTen = rs.getString("hoTen");
-//                String maSV = rs.getString("maSV");
-//                String gioiTinh = rs.getString("gioiTinh");
-//                String ngaySinh = rs.getString("ngaySinh");
-//                String email = rs.getString("Email");
-//                String khoaHoc = rs.getString("khoaHoc");
-//                String nganhHoc = rs.getString("nganhHoc");
-//                
-//                if(loaiSV1.equals("CTM"))
-//                    sinhVien = new SinhVienCTMau(0, 0, hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc, listMonHoc)
-//            }
-//        }
-//        catch(SQLException ex){
-//            Logger.getLogger(QuanLyImpl.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        SinhVien sinhVien = null;
+        try{
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement("SELECT * FROM dssv WHERE loaiSV=?");
+            ps.setString(1, loaiSV);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                String loaiSV1 = rs.getString("loaiSV");
+                String hoTen = rs.getString("hoTen");
+                String maSV = rs.getString("maSV");
+                String gioiTinh = rs.getString("gioiTinh");
+                String ngaySinh = rs.getString("ngaySinh");
+                String email = rs.getString("Email");
+                int khoaHoc = rs.getInt("khoaHoc");
+                String nganhHoc = rs.getString("nganhHoc");
+                
+                if(loaiSV1.equals("CTM"))
+                    sinhVien = new SinhVienCTMau(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
+                else
+                    sinhVien = new SinhVienTinChi(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
+                
+                listSV.add(sinhVien);
+            }
+            conn.close();
+        }
+        catch(SQLException ex){
+            Logger.getLogger(QuanLyImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return listSV;
     }
 

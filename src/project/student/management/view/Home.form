@@ -101,6 +101,9 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable1MouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -122,10 +125,10 @@
                   <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                   <Component id="themButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="176" max="32767" attributes="0"/>
-                  <Component id="kButton2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="187" max="-2" attributes="0"/>
-                  <Component id="kButton3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
+                  <Component id="suaBtn" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="175" max="-2" attributes="0"/>
+                  <Component id="xoaBtn" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="255" max="-2" attributes="0"/>
@@ -142,8 +145,8 @@
                   <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="themButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="kButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="kButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="suaBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="xoaBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="40" max="32767" attributes="0"/>
               </Group>
@@ -157,24 +160,32 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="themButtonMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="themButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="com.k33ptoo.components.KButton" name="kButton2">
+        <Component class="com.k33ptoo.components.KButton" name="suaBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ch&#x1ec9;nh s&#x1eed;a"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="suaBtnActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="com.k33ptoo.components.KButton" name="kButton3">
+        <Component class="com.k33ptoo.components.KButton" name="xoaBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="X&#xf3;a sinh vi&#xea;n"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="xoaBtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="timkiemField">
           <Properties>
-            <Property name="text" type="java.lang.String" value="T&#xec;m ki&#x1ebf;m v&#x1edb;i t&#xea;n, m&#xe3; sinh vi&#xea;n, khoa h&#x1ecd;c"/>
+            <Property name="text" type="java.lang.String" value="T&#xec;m ki&#x1ebf;m v&#x1edb;i t&#xea;n, m&#xe3; sinh vi&#xea;n, kh&#xf3;a h&#x1ecd;c"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="timkiemFieldMouseClicked"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="timkiemFieldKeyPressed"/>
           </Events>
         </Component>
       </SubComponents>

@@ -4,17 +4,30 @@
  */
 package project.student.management.view;
 
+
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.swing.ButtonGroup;
+import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
+import project.student.management.controller.QuanLyImpl;
+import project.student.management.model.SinhVien;
+import project.student.management.model.SinhVienCTMau;
+import project.student.management.model.SinhVienTinChi;
 
 /**
  *
  * @author seape
  */
 public class ThemSV extends javax.swing.JFrame {
-
-    /**
-     * Creates new form ThemSV
-     */
+    QuanLyImpl ql = new QuanLyImpl();
+    Home home = new Home();
+      
     public ThemSV() {
         initComponents();
         // button group nam và nu
@@ -27,6 +40,7 @@ public class ThemSV extends javax.swing.JFrame {
         loaiSVButtonGroup.add(chuontrinhmauButton);
         loaiSVButtonGroup.add(tinchiButton);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        //ngaySinhPn.add(datePicker);
     }
 
     /**
@@ -38,6 +52,8 @@ public class ThemSV extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         kGradientPanel1 = new com.k33ptoo.components.KGradientPanel();
         jLabel1 = new javax.swing.JLabel();
         hotenTextField = new javax.swing.JTextField();
@@ -58,7 +74,29 @@ public class ThemSV extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         tinchiButton = new javax.swing.JRadioButton();
         chuontrinhmauButton = new javax.swing.JRadioButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        nganhHocCB = new javax.swing.JComboBox<>();
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,6 +125,11 @@ public class ThemSV extends javax.swing.JFrame {
         jLabel13.setText("Ngành học");
 
         themButton.setText("Thêm");
+        themButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                themButtonActionPerformed(evt);
+            }
+        });
 
         resetButton.setText("Reset");
         resetButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -106,13 +149,19 @@ public class ThemSV extends javax.swing.JFrame {
 
         chuontrinhmauButton.setText("Chương trình mẫu");
 
-        jComboBox1.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Công nghệ thông tin", "Quản trị kinh doanh", "Kỹ thuật Cơ điện tử" }));
+        nganhHocCB.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        nganhHocCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Công nghệ thông tin", "Kỹ thuật Cơ điện tử", "Quản trị kinh doanh" }));
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
         kGradientPanel1Layout.setHorizontalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(themButton, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(resetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(89, 89, 89))
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                 .addGap(61, 61, 61)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,37 +174,33 @@ public class ThemSV extends javax.swing.JFrame {
                         .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addGap(30, 30, 30)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
                         .addComponent(tinchiButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(chuontrinhmauButton)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(hotenTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(masvTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ngaysinhTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(emailTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(khoahocTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, kGradientPanel1Layout.createSequentialGroup()
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
                                 .addComponent(namRadioBton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(nuRadiobuton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(98, Short.MAX_VALUE))))
-            .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(themButton, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(resetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(nuRadiobuton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(nganhHocCB, 0, 202, Short.MAX_VALUE)
+                                .addComponent(hotenTextField)
+                                .addComponent(masvTextField)
+                                .addComponent(ngaysinhTextField)
+                                .addComponent(emailTextField)
+                                .addComponent(khoahocTextField)))
+                        .addContainerGap(89, Short.MAX_VALUE))))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                .addGap(92, 92, 92)
+                .addGap(112, 112, 112)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(hotenTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -163,17 +208,12 @@ public class ThemSV extends javax.swing.JFrame {
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(masvTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel9)
-                        .addGap(28, 28, 28))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(namRadioBton)
-                            .addComponent(nuRadiobuton))
-                        .addGap(18, 18, 18)))
+                .addGap(26, 26, 26)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(namRadioBton)
+                    .addComponent(nuRadiobuton))
+                .addGap(26, 26, 26)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ngaysinhTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
@@ -188,13 +228,13 @@ public class ThemSV extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nganhHocCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(tinchiButton)
                     .addComponent(chuontrinhmauButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(themButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(resetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -209,7 +249,7 @@ public class ThemSV extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -223,9 +263,83 @@ public class ThemSV extends javax.swing.JFrame {
         ngaysinhTextField.setText("");
         emailTextField.setText("");
         khoahocTextField.setText("");
-        
+        nganhHocCB.setSelectedIndex(0);
     }//GEN-LAST:event_resetButtonMouseClicked
 
+    private void themButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themButtonActionPerformed
+        // TODO add your handling code here:
+        if( hotenTextField.getText().equals("") ||
+            masvTextField.getText().equals("") ||
+            (!namRadioBton.isSelected() && !nuRadiobuton.isSelected()) ||
+            ngaysinhTextField.getText().equals("") ||
+            emailTextField.getText().equals("") ||
+            khoahocTextField.getText().equals("") ||
+            nganhHocCB.getSelectedIndex() == 0 ||
+            (!tinchiButton.isSelected() && !chuontrinhmauButton.isSelected())){
+            JOptionPane.showMessageDialog(null, "Không được để trống!");
+        } else if(!isNumeric(khoahocTextField.getText())){
+            JOptionPane.showMessageDialog(null, "Khoá học phải là số nguyên!");
+        }else if(!isValidDate(ngaysinhTextField.getText())){
+            JOptionPane.showMessageDialog(null, "Định dạng của ngày sinh phải là yyyy-MM-dd!");
+        }
+        else {
+            themSV();
+            JOptionPane.showMessageDialog(null, "Thêm sinh viên thành công!");
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_themButtonActionPerformed
+
+    private void themSV(){
+        SinhVien sv = null;
+        String hoTen = hotenTextField.getText();
+        String maSV = masvTextField.getText();
+        String gioiTinh = null;
+        if(namRadioBton.isSelected())
+            gioiTinh = "Nam";
+        else if(nuRadiobuton.isSelected())
+            gioiTinh = "Nữ";
+        String ngaySinh = ngaysinhTextField.getText();
+        String email = emailTextField.getText();
+        int khoaHoc = Integer.parseInt(khoahocTextField.getText());
+        String nganhHoc = nganhHocCB.getSelectedItem().toString();
+        String loaiSV;
+        if(tinchiButton.isSelected()){
+            loaiSV = "TC";
+            sv = new SinhVienTinChi(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
+        }
+        else if(chuontrinhmauButton.isSelected()){
+            loaiSV = "CTM";
+            sv = new SinhVienCTMau(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
+        }
+        ql.themSV(sv);
+    }
+    
+    private boolean isNumeric(String str) { 
+        try {  
+            Integer.parseInt(str);  
+            return true;
+        } catch(NumberFormatException e){  
+            return false;  
+        }  
+    }
+    
+    private boolean isValidDate(String date){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date testDate = null;
+        try{
+            testDate = convertUtilToSql(sdf.parse(date));
+        }
+        catch(ParseException pe){
+            return false;
+        }
+        return true;
+    }
+    
+    private static java.sql.Date convertUtilToSql(java.util.Date uDate) {
+        java.sql.Date sDate = new java.sql.Date(uDate.getTime());
+        return sDate;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -260,12 +374,12 @@ public class ThemSV extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton chuontrinhmauButton;
     private javax.swing.JTextField emailTextField;
     private javax.swing.JTextField hotenTextField;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -274,10 +388,13 @@ public class ThemSV extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private com.k33ptoo.components.KGradientPanel kGradientPanel1;
     private javax.swing.JTextField khoahocTextField;
     private javax.swing.JTextField masvTextField;
     private javax.swing.JRadioButton namRadioBton;
+    private javax.swing.JComboBox<String> nganhHocCB;
     private javax.swing.JTextField ngaysinhTextField;
     private javax.swing.JRadioButton nuRadiobuton;
     private com.k33ptoo.components.KButton resetButton;
@@ -285,3 +402,4 @@ public class ThemSV extends javax.swing.JFrame {
     private javax.swing.JRadioButton tinchiButton;
     // End of variables declaration//GEN-END:variables
 }
+
