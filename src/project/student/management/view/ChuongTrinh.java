@@ -37,18 +37,12 @@ public class ChuongTrinh extends javax.swing.JPanel {
         chuongtrinh_mauButton = new com.k33ptoo.components.KButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        loaisvLabel = new javax.swing.JLabel();
 
         kGradientPanel1.setkEndColor(new java.awt.Color(255, 255, 255));
         kGradientPanel1.setkGradientFocus(0);
         kGradientPanel1.setkStartColor(new java.awt.Color(204, 255, 255));
 
         chuongtrinh_tinchiButton.setText("Chương trình tín chỉ");
-        chuongtrinh_tinchiButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                chuongtrinh_tinchiButtonMouseClicked(evt);
-            }
-        });
         chuongtrinh_tinchiButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chuongtrinh_tinchiButtonActionPerformed(evt);
@@ -56,11 +50,6 @@ public class ChuongTrinh extends javax.swing.JPanel {
         });
 
         chuongtrinh_mauButton.setText("Chương trình mẫu");
-        chuongtrinh_mauButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                chuongtrinh_mauButtonMouseClicked(evt);
-            }
-        });
         chuongtrinh_mauButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chuongtrinh_mauButtonActionPerformed(evt);
@@ -74,39 +63,47 @@ public class ChuongTrinh extends javax.swing.JPanel {
             new String [] {
                 "Họ tên", "Mã SV", "Giới tính", "Ngày sinh", "Email", "Khóa học", "Ngành học"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, true, false, true, true, true, true
+            };
 
-        loaisvLabel.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(50);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(20);
+            jTable1.getColumnModel().getColumn(5).setPreferredWidth(20);
+        }
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
         kGradientPanel1Layout.setHorizontalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                .addGap(282, 282, 282)
-                .addComponent(chuongtrinh_tinchiButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
-                .addComponent(chuongtrinh_mauButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(279, 279, 279))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(loaisvLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(310, 310, 310))
+                .addComponent(chuongtrinh_tinchiButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(201, 201, 201)
+                .addComponent(chuongtrinh_mauButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(245, 245, 245))
+            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addGap(87, 87, 87)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 869, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(94, Short.MAX_VALUE))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
+                .addGap(50, 50, 50)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chuongtrinh_tinchiButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(chuongtrinh_mauButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(loaisvLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGap(84, 84, 84)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(119, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -120,16 +117,6 @@ public class ChuongTrinh extends javax.swing.JPanel {
             .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-     // set TEXT = "" khi click chuot
-    private void chuongtrinh_tinchiButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chuongtrinh_tinchiButtonMouseClicked
-        // TODO add your handling code here:
-        loaisvLabel.setText("Sinh viên tín chỉ");
-    }//GEN-LAST:event_chuongtrinh_tinchiButtonMouseClicked
-
-    private void chuongtrinh_mauButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chuongtrinh_mauButtonMouseClicked
-        // TODO add your handling code here:
-        loaisvLabel.setText("Sinh viên chương trình mẫu");
-    }//GEN-LAST:event_chuongtrinh_mauButtonMouseClicked
 
     private void chuongtrinh_tinchiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chuongtrinh_tinchiButtonActionPerformed
         // TODO add your handling code here:
@@ -176,6 +163,5 @@ public class ChuongTrinh extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private com.k33ptoo.components.KGradientPanel kGradientPanel1;
-    private javax.swing.JLabel loaisvLabel;
     // End of variables declaration//GEN-END:variables
 }

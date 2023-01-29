@@ -26,14 +26,7 @@ public class Home extends javax.swing.JPanel {
     private Connection conn;
     private PreparedStatement ps;
     DefaultTableModel model;
-    private String loaiSV;
-    private String hoTen;
     private String maSV;
-    private String gioiTinh;
-    private String ngaySinh;
-    private String email;
-    private int khoaHoc;
-    private String nganhHoc;
     /**
      * Creates new form Home
      */
@@ -52,8 +45,6 @@ public class Home extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         kGradientPanel1 = new com.k33ptoo.components.KGradientPanel();
         themButton = new com.k33ptoo.components.KButton();
         suaBtn = new com.k33ptoo.components.KButton();
@@ -68,16 +59,134 @@ public class Home extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        THEMBUTTON = new com.k33ptoo.components.KButton();
         hotenTextField = new javax.swing.JTextField();
-        nganhsinhTextField = new javax.swing.JTextField();
         maSVTextField = new javax.swing.JTextField();
         emailTextField = new javax.swing.JTextField();
         khoahocTextField = new javax.swing.JTextField();
         gioitinhCombobox = new javax.swing.JComboBox<>();
-        loaiSVTextField = new javax.swing.JComboBox<>();
-        nganhhocTextField = new javax.swing.JComboBox<>();
+        loaiSVComboBox = new javax.swing.JComboBox<>();
+        nganhHocComboBox = new javax.swing.JComboBox<>();
         SUABUTTON = new com.k33ptoo.components.KButton();
+        ngaySinhDC = new com.toedter.calendar.JDateChooser();
+        THEMBUTTON = new com.k33ptoo.components.KButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
+
+        kGradientPanel1.setkEndColor(new java.awt.Color(255, 255, 255));
+        kGradientPanel1.setkGradientFocus(0);
+        kGradientPanel1.setkStartColor(new java.awt.Color(204, 255, 255));
+        kGradientPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        themButton.setText("Thêm sinh viên");
+        themButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                themButtonMouseClicked(evt);
+            }
+        });
+        themButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                themButtonActionPerformed(evt);
+            }
+        });
+        kGradientPanel1.add(themButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, -1, -1));
+
+        suaBtn.setText("Chỉnh sửa");
+        suaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                suaBtnActionPerformed(evt);
+            }
+        });
+        kGradientPanel1.add(suaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, -1, -1));
+
+        xoaBtn.setText("Xóa sinh viên");
+        xoaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                xoaBtnActionPerformed(evt);
+            }
+        });
+        kGradientPanel1.add(xoaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 70, -1, -1));
+
+        timkiemField.setText("Tìm kiếm với tên, mã sinh viên, khóa học");
+        timkiemField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                timkiemFieldMouseClicked(evt);
+            }
+        });
+        timkiemField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                timkiemFieldKeyPressed(evt);
+            }
+        });
+        kGradientPanel1.add(timkiemField, new org.netbeans.lib.awtextra.AbsoluteConstraints(258, 6, 570, 37));
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setText("Họ tên");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 46, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setText("Mã SV");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(383, 46, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setText("Giới tính");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(724, 46, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setText("Ngày sinh");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 108, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel5.setText("Email");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(383, 108, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel6.setText("Khóa học");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(724, 108, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel7.setText("Ngành học");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 170, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel8.setText("Loại SV");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(383, 170, -1, -1));
+        jPanel1.add(hotenTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 43, 150, -1));
+        jPanel1.add(maSVTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(449, 43, 140, -1));
+        jPanel1.add(emailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(449, 105, 140, -1));
+        jPanel1.add(khoahocTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(813, 105, 130, -1));
+
+        gioitinhCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Nam", "Nữ" }));
+        jPanel1.add(gioitinhCombobox, new org.netbeans.lib.awtextra.AbsoluteConstraints(813, 43, 130, -1));
+
+        loaiSVComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Tín chỉ", "Chương trình mẫu" }));
+        jPanel1.add(loaiSVComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(449, 167, 140, -1));
+
+        nganhHocComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "  ", "Công nghệ thông tin", "Quản trị kinh doanh", "Kỹ thuật Cơ điện tử" }));
+        jPanel1.add(nganhHocComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 167, 150, -1));
+
+        SUABUTTON.setText("Sửa");
+        SUABUTTON.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SUABUTTONActionPerformed(evt);
+            }
+        });
+        jPanel1.add(SUABUTTON, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 150, 153, -1));
+
+        ngaySinhDC.setDateFormatString("yyyy-MM-dd");
+        jPanel1.add(ngaySinhDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 110, 180, -1));
+
+        THEMBUTTON.setText("Thêm");
+        THEMBUTTON.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                THEMBUTTONActionPerformed(evt);
+            }
+        });
+        jPanel1.add(THEMBUTTON, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 150, 154, -1));
+
+        kGradientPanel1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 980, 220));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,209 +201,34 @@ public class Home extends javax.swing.JPanel {
                 jTable1MouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-
-        kGradientPanel1.setkEndColor(new java.awt.Color(255, 255, 255));
-        kGradientPanel1.setkGradientFocus(0);
-        kGradientPanel1.setkStartColor(new java.awt.Color(204, 255, 255));
-
-        themButton.setText("Thêm sinh viên");
-        themButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                themButtonMouseClicked(evt);
-            }
-        });
-        themButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                themButtonActionPerformed(evt);
-            }
-        });
-
-        suaBtn.setText("Chỉnh sửa");
-        suaBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                suaBtnActionPerformed(evt);
-            }
-        });
-
-        xoaBtn.setText("Xóa sinh viên");
-        xoaBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                xoaBtnActionPerformed(evt);
-            }
-        });
-
-        timkiemField.setText("Tìm kiếm với tên, mã sinh viên, khóa học");
-        timkiemField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                timkiemFieldMouseClicked(evt);
-            }
-        });
-        timkiemField.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                timkiemFieldKeyPressed(evt);
+                jTable1KeyPressed(evt);
             }
         });
+        jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(20);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(90);
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(20);
+            jTable1.getColumnModel().getColumn(6).setPreferredWidth(20);
+            jTable1.getColumnModel().getColumn(7).setPreferredWidth(90);
+        }
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setText("Họ tên");
+        kGradientPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 420, 850, 242));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setText("Mã SV");
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setText("Giới tính");
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel4.setText("Ngày sinh");
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel5.setText("Email");
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel6.setText("Khóa học");
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel7.setText("Ngành học");
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel8.setText("Loại SV");
-
-        THEMBUTTON.setText("Thêm");
-
-        gioitinhCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
-        gioitinhCombobox.setSelectedIndex(-1);
-
-        loaiSVTextField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tín chỉ", "Chương trình mẫu" }));
-        loaiSVTextField.setSelectedIndex(-1);
-
-        nganhhocTextField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Công nghệ thông tin", "Quản trị kinh doanh", "Kỹ thuật Cơ điện tử" }));
-        nganhhocTextField.setSelectedIndex(-1);
-
-        SUABUTTON.setText("Sửa");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel7))
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(hotenTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                    .addComponent(nganhsinhTextField)
-                    .addComponent(nganhhocTextField, 0, 1, Short.MAX_VALUE))
-                .addGap(109, 109, 109)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel8))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(maSVTextField)
-                    .addComponent(emailTextField)
-                    .addComponent(loaiSVTextField, 0, 130, Short.MAX_VALUE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel3))
-                        .addGap(38, 38, 38)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(khoahocTextField)
-                            .addComponent(gioitinhCombobox, 0, 130, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(THEMBUTTON, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(SUABUTTON, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(67, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(hotenTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(maSVTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(gioitinhCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(nganhsinhTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(khoahocTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(THEMBUTTON, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loaiSVTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nganhhocTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SUABUTTON, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(43, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
-        kGradientPanel1.setLayout(kGradientPanel1Layout);
-        kGradientPanel1Layout.setHorizontalGroup(
-            kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(themButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(suaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(177, 177, 177)
-                .addComponent(xoaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(102, 102, 102))
-            .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                .addGap(258, 258, 258)
-                .addComponent(timkiemField, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        kGradientPanel1Layout.setVerticalGroup(
-            kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(timkiemField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
-                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(themButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(suaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(xoaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        jLabel9.setText(".");
+        kGradientPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 270, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1102, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -318,6 +252,7 @@ public class Home extends javax.swing.JPanel {
         else{
             if(JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa sinh viên khỏi danh sách không?",
                     "Warning", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                maSV = jTable1.getValueAt(jTable1.getSelectedRowCount(), 2).toString();
                 ql.xoaSV(maSV);
                 JOptionPane.showMessageDialog(null, "Xóa sinh viên thành công!");
                 showTable();
@@ -327,16 +262,19 @@ public class Home extends javax.swing.JPanel {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        if(jTable1.getSelectedRowCount() == 1){
-            loaiSV = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
-            hoTen = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 1);
-            maSV = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 2);
-            gioiTinh = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 3);
-            ngaySinh = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 4);
-            email = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 5);
-            khoaHoc = (int) jTable1.getValueAt(jTable1.getSelectedRow(), 6);
-            nganhHoc = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 7);
-        }
+        
+        
+//        if(jTable1.getSelectedRowCount() == 1){
+//            loaiSVComboBox.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRowCount(), 0).toString());
+//        hotenTextField.setText(jTable1.getValueAt(jTable1.getSelectedRowCount(), 1).toString());
+//        maSVTextField.setText(jTable1.getValueAt(jTable1.getSelectedRowCount(), 2).toString());
+//        gioitinhCombobox.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRowCount(), 3).toString());
+//        ngaySinhDC.setDateFormatString(jTable1.getValueAt(jTable1.getSelectedRowCount(), 4).toString());
+//        emailTextField.setText(jTable1.getValueAt(jTable1.getSelectedRowCount(), 5).toString());
+//        khoahocTextField.setText(jTable1.getValueAt(jTable1.getSelectedRowCount(), 6).toString());
+//        nganhHocComboBox.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRowCount(), 7).toString());
+//        }
+        
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void themButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themButtonActionPerformed
@@ -353,25 +291,25 @@ public class Home extends javax.swing.JPanel {
 
     private void suaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suaBtnActionPerformed
         // TODO add your handling code here:
-           jPanel1.setVisible(true);
-           SUABUTTON.setVisible(true);
-           THEMBUTTON.setVisible(false);
-        SinhVien sinhVien = null;
-        if(loaiSV.equals("CTM"))
-            sinhVien = new SinhVienCTMau(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
-        else sinhVien = new SinhVienTinChi(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
-        if(jTable1.getSelectedRowCount() == 0)
-            JOptionPane.showMessageDialog(null, "Hãy chọn một sinh viên để chỉnh sửa!");
-        else if(jTable1.getSelectedRowCount() > 1)
-            JOptionPane.showMessageDialog(null, "Chỉ được chọn một sinh viên để chỉnh sửa");
-        else{
-            if(JOptionPane.showConfirmDialog(null, "Bạn có muốn chỉnh sửa thông tin của sinh viên này không?",
-                    "Warning", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-                ql.suaThongTinSV(maSV, sinhVien);
-                JOptionPane.showMessageDialog(null, "Chỉnh sửa thành công!");
-                showTable();
-            } 
-        }
+        jPanel1.setVisible(true);
+        SUABUTTON.setVisible(true);
+        THEMBUTTON.setVisible(false);
+//        SinhVien sinhVien = null;
+//        if(loaiSV.equals("CTM"))
+//            sinhVien = new SinhVienCTMau(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
+//        else sinhVien = new SinhVienTinChi(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
+//        if(jTable1.getSelectedRowCount() == 0)
+//            JOptionPane.showMessageDialog(null, "Hãy chọn một sinh viên để chỉnh sửa!");
+//        else if(jTable1.getSelectedRowCount() > 1)
+//            JOptionPane.showMessageDialog(null, "Chỉ được chọn một sinh viên để chỉnh sửa");
+//        else{
+//            if(JOptionPane.showConfirmDialog(null, "Bạn có muốn chỉnh sửa thông tin của sinh viên này không?",
+//                    "Warning", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+//                ql.suaThongTinSV(maSV, sinhVien);
+//                JOptionPane.showMessageDialog(null, "Chỉnh sửa thành công!");
+//                showTable();
+//            } 
+//        }
     }//GEN-LAST:event_suaBtnActionPerformed
 
     private void timkiemFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_timkiemFieldKeyPressed
@@ -399,6 +337,83 @@ public class Home extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_timkiemFieldKeyPressed
 
+    private void THEMBUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_THEMBUTTONActionPerformed
+        // TODO add your handling code here:
+        if( hotenTextField.getText().equals("") ||
+            maSVTextField.getText().equals("") ||
+            gioitinhCombobox.getSelectedIndex() == 0 ||
+            ngaySinhDC.getDateFormatString().equals("") ||
+            emailTextField.getText().equals("") ||
+            khoahocTextField.getText().equals("") ||
+            nganhHocComboBox.getSelectedIndex() == 0 || 
+            loaiSVComboBox.getSelectedIndex() == 0){
+            JOptionPane.showMessageDialog(null, "Không được để trống!");
+        }
+        else if(!isNumeric(khoahocTextField.getText())){
+            JOptionPane.showMessageDialog(null, "Khoá học phải là số nguyên!");
+        }
+        else{
+            SinhVien sinhVien = null;
+            String loaiSV;
+            String hoTen = hotenTextField.getText();
+            String maSV = maSVTextField.getText();
+            String gioiTinh = gioitinhCombobox.getSelectedItem().toString();
+            String ngaySinh = convertUtilToSql(ngaySinhDC.getDate()).toString();
+            String email = emailTextField.getText();
+            int khoaHoc = Integer.parseInt(khoahocTextField.getText());
+            String nganhHoc = nganhHocComboBox.getSelectedItem().toString();
+            if(loaiSVComboBox.getSelectedIndex() == 1){
+                loaiSV = "TC";
+                sinhVien = new SinhVienTinChi(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
+            }
+            else if(loaiSVComboBox.getSelectedIndex() == 2){
+                loaiSV = "CTM";
+                sinhVien = new SinhVienCTMau(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
+            }
+            ql.themSV(sinhVien);
+            JOptionPane.showMessageDialog(null, "Thêm sinh viên thành công!");
+            showTable();
+        }
+        
+        
+        
+        
+    }//GEN-LAST:event_THEMBUTTONActionPerformed
+
+    private void SUABUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SUABUTTONActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_SUABUTTONActionPerformed
+
+    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable1KeyPressed
+
+    private boolean isNumeric(String str) { 
+        try {  
+            Integer.parseInt(str);  
+            return true;
+        } catch(NumberFormatException e){  
+            return false;  
+        }  
+    }
+    
+    private static java.sql.Date convertUtilToSql(java.util.Date uDate) {
+        java.sql.Date sDate = new java.sql.Date(uDate.getTime());
+        return sDate;
+    }
+    
+    private void getInformationFromTableToTxt(){
+        loaiSVComboBox.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRowCount(), 0).toString());
+        hotenTextField.setText(jTable1.getValueAt(jTable1.getSelectedRowCount(), 1).toString());
+        maSVTextField.setText(jTable1.getValueAt(jTable1.getSelectedRowCount(), 2).toString());
+        gioitinhCombobox.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRowCount(), 3).toString());
+        ngaySinhDC.setDateFormatString(jTable1.getValueAt(jTable1.getSelectedRowCount(), 4).toString());
+        emailTextField.setText(jTable1.getValueAt(jTable1.getSelectedRowCount(), 5).toString());
+        khoahocTextField.setText(jTable1.getValueAt(jTable1.getSelectedRowCount(), 6).toString());
+        nganhHocComboBox.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRowCount(), 7).toString());
+    }
+    
     private void showTable(){
         try {
             model = (DefaultTableModel) jTable1.getModel();
@@ -440,15 +455,16 @@ public class Home extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private com.k33ptoo.components.KGradientPanel kGradientPanel1;
     private javax.swing.JTextField khoahocTextField;
-    private javax.swing.JComboBox<String> loaiSVTextField;
+    private javax.swing.JComboBox<String> loaiSVComboBox;
     private javax.swing.JTextField maSVTextField;
-    private javax.swing.JComboBox<String> nganhhocTextField;
-    private javax.swing.JTextField nganhsinhTextField;
+    private javax.swing.JComboBox<String> nganhHocComboBox;
+    private com.toedter.calendar.JDateChooser ngaySinhDC;
     private com.k33ptoo.components.KButton suaBtn;
     private com.k33ptoo.components.KButton themButton;
     private javax.swing.JTextField timkiemField;
