@@ -46,7 +46,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
-                          <Component id="MonhocCombobox" min="-2" pref="381" max="-2" attributes="0"/>
+                          <Component id="monHocCombobox" min="-2" pref="381" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
@@ -81,7 +81,7 @@
                           <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="diemckTextField" max="32767" attributes="0"/>
-                              <Component id="monhocCombobox" pref="133" max="32767" attributes="0"/>
+                              <Component id="monHocCombobox2" pref="133" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
@@ -101,7 +101,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="MonhocCombobox" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="monHocCombobox" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                       <Component id="kButton1" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
@@ -111,7 +111,7 @@
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="nganhhocCombobox" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="monhocCombobox" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="monHocCombobox2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -223,32 +223,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="themdiemButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JComboBox" name="MonhocCombobox">
+        <Component class="javax.swing.JComboBox" name="monHocCombobox">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="2"/>
             </Property>
             <Property name="maximumRowCount" type="int" value="7"/>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="16">
-                <StringItem index="0" value="C&#x1ea5;u tr&#xfa;c d&#x1eef; li&#x1ec7;u v&#xe0; gi&#x1ea3;i thu&#x1ead;t"/>
-                <StringItem index="1" value="H&#x1ec7; &#x111;i&#x1ec1;u h&#xe0;nh"/>
-                <StringItem index="2" value="M&#x1ea1;ng m&#xe1;y t&#xed;nh"/>
-                <StringItem index="3" value="C&#x1a1; s&#x1edf; d&#x1eef; li&#x1ec7;u"/>
-                <StringItem index="4" value="L&#x1ead;p tr&#xec;nh h&#x1b0;&#x1edb;ng &#x111;&#x1ed1;i t&#x1b0;&#x1ee3;ng"/>
-                <StringItem index="5" value="Qu&#x1ea3;n tr&#x1ecb; kinh doanh"/>
-                <StringItem index="6" value="Qu&#x1ea3;n tr&#x1ecb; chi&#x1ebf;n l&#x1b0;&#x1ee3;c"/>
-                <StringItem index="7" value="&#x110;&#x1ea1;o &#x111;&#x1ee9;c kinh doanh"/>
-                <StringItem index="8" value="Qu&#x1ea3;n tr&#x1ecb; qu&#xe1; tr&#xec;nh kinh doanh"/>
-                <StringItem index="9" value="Qu&#x1ea3;n tr&#x1ecb; &#x111;a v&#x103;n h&#xf3;a"/>
-                <StringItem index="10" value="S&#x1ee9;c b&#x1ec1;n v&#x1ead;t li&#x1ec7;u"/>
-                <StringItem index="11" value="C&#x1a1; s&#x1edf; thi&#x1ebf;t k&#x1ebf; m&#xe1;y"/>
-                <StringItem index="12" value="Nguy&#xea;n l&#xfd; k&#x1ef9; thu&#x1ead;t &#x111;i&#x1ec7;n t&#x1eed;"/>
-                <StringItem index="13" value="Linh ki&#x1ec7;n b&#xe1;n d&#x1eab;n v&#xe0; vi m&#x1ea1;ch"/>
-                <StringItem index="14" value="K&#x1ef9; thu&#x1ead;t &#x111;o l&#x1b0;&#x1edd;ng v&#xe0; c&#x1ea3;m bi&#x1ebf;n"/>
-                <StringItem index="15" value=" "/>
-              </StringArray>
-            </Property>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -333,7 +313,7 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JComboBox" name="monhocCombobox">
+        <Component class="javax.swing.JComboBox" name="monHocCombobox2">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>

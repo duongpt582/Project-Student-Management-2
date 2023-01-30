@@ -14,6 +14,7 @@ import project.student.management.model.SinhVien;
 import project.student.management.model.SinhVienCTMau;
 import project.student.management.model.SinhVienTinChi;
 import project.student.management.database.DBConnection;
+import project.student.management.model.ChuongTrinhDaoTao;
 
 /**
  *
@@ -39,7 +40,8 @@ public class QuanLyImpl implements QuanLy{
             ps.setString(5, sinhVien.getNgaySinh());
             ps.setString(6, sinhVien.getEmail());
             ps.setInt(7, sinhVien.getKhoaHoc());
-            ps.setString(8, sinhVien.getNganhHoc());
+            // có thể lỗi ở đây
+            ps.setString(8, sinhVien.getNganhHoc().getNganhHoc());
             ps.executeUpdate();
             conn.close();
         } catch (SQLException ex) {
@@ -75,7 +77,8 @@ public class QuanLyImpl implements QuanLy{
             ps.setString(5, sinhVien.getNgaySinh());
             ps.setString(6, sinhVien.getEmail());
             ps.setInt(7, sinhVien.getKhoaHoc());
-            ps.setString(8, sinhVien.getNganhHoc());
+            // có thể lỗi ở đây
+            ps.setString(8, sinhVien.getNganhHoc().getNganhHoc());
             ps.setString(9, maSV);
             ps.executeUpdate();
             conn.close();
@@ -92,6 +95,7 @@ public class QuanLyImpl implements QuanLy{
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement("SELECT * FROM dssv WHERE hoTen like ? or maSV like ? or khoaHoc like ?");
+            PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM ctdt WHERE 1");
             ps.setString(1, "%" + valueSearch + "%");
             ps.setString(2, "%" + valueSearch + "%");
             ps.setString(3, "%" + valueSearch + "%");
@@ -106,8 +110,9 @@ public class QuanLyImpl implements QuanLy{
                 int khoaHoc = rs.getInt("khoaHoc");
                 String nganhHoc = rs.getString("nganhHoc");
                 
-                if(loaiSV.equals("CTM"))
-                    sinhVien = new SinhVienCTMau(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
+                // có thể lỗi ở đây
+                if(loaiSV.equals(SinhVien.LoaiSinhVien.CTM)) 
+                    sinhVien = new SinhVienCTMau(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc, );
                 else
                     sinhVien = new SinhVienTinChi(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
                 listSV.add(sinhVien);

@@ -5,23 +5,17 @@
 package project.student.management.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 
-/**
- *
- * @author ASUS
- */
+
 public class SinhVienCTMau extends SinhVien{
     private int soMonHocHoanThanh;
     private double diemTB;
 
-    public SinhVienCTMau(int soMonHocHoanThanh, double diemTB, String hoTen, String maSV, String gioiTinh, String ngaySinh, String email, int khoaHoc, String nganhHoc, ArrayList<MonHoc> listMonHoc) {
-        super(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc, listMonHoc);
+    public SinhVienCTMau( String hoTen, String maSV, String gioiTinh, String ngaySinh, String email, int khoaHoc, ChuongTrinhDaoTao nganhHoc, ArrayList<MonHoc2> listMonHoc, int soMonHocHoanThanh, double diemTB) {
+        super(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, LoaiSinhVien.CTM, nganhHoc, listMonHoc);
         this.soMonHocHoanThanh = soMonHocHoanThanh;
         this.diemTB = diemTB;
-    }
-    
-    public SinhVienCTMau(String hoTen, String maSV, String gioiTinh, String ngaySinh, String email, int khoaHoc, String nganhHoc){
-        super(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
     }
 
     public int getSoMonHocHoanThanh() {

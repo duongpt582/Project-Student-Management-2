@@ -5,22 +5,21 @@
 package project.student.management.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 
-/**
- *
- * @author ASUS
- */
+
 public class SinhVienTinChi extends SinhVien{
     private int soTinChiHoanThanh;
 
-    public SinhVienTinChi(int soTinChiHoanThanh, String hoTen, String maSV, String gioiTinh, String ngaySinh, String email, int khoaHoc, String nganhHoc, ArrayList<MonHoc> listMonHoc) {
-        super(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc, listMonHoc);
+    public SinhVienTinChi(int soTinChiHoanThanh, String hoTen, String maSV, String gioiTinh, String ngaySinh, String email, int khoaHoc, ChuongTrinhDaoTao nganhHoc, ArrayList<MonHoc2> listMonHoc) {
+        super(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, LoaiSinhVien.TC, nganhHoc, listMonHoc);
         this.soTinChiHoanThanh = soTinChiHoanThanh;
     }
+
+
     
-    public SinhVienTinChi(String hoTen, String maSV, String gioiTinh, String ngaySinh, String email, int khoaHoc, String nganhHoc){
-        super(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
-    }
+
+    
 
     public int getSoTinChiHoanThanh() {
         return soTinChiHoanThanh;
@@ -32,7 +31,7 @@ public class SinhVienTinChi extends SinhVien{
 
     @Override
     public boolean xetTotNghiep() {
-        super.xetTotNghiep(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        super.xetTotNghiep();
         return false;
     }
     

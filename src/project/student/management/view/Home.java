@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import project.student.management.controller.QuanLyImpl;
 import project.student.management.database.DBConnection;
+import project.student.management.model.ChuongTrinhDaoTao;
 import project.student.management.model.SinhVien;
 import project.student.management.model.SinhVienCTMau;
 import project.student.management.model.SinhVienTinChi;
@@ -33,7 +34,7 @@ public class Home extends javax.swing.JPanel {
     private String ngaySinh;
     private String email;
     private int khoaHoc;
-    private String nganhHoc;
+    private ChuongTrinhDaoTao nganhHoc;
     /**
      * Creates new form Home
      */
@@ -335,7 +336,7 @@ public class Home extends javax.swing.JPanel {
             ngaySinh = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 4);
             email = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 5);
             khoaHoc = (int) jTable1.getValueAt(jTable1.getSelectedRow(), 6);
-            nganhHoc = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 7);
+            nganhHoc.setNganhHoc((String) jTable1.getValueAt(jTable1.getSelectedRow(), 7));
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -357,8 +358,8 @@ public class Home extends javax.swing.JPanel {
            SUABUTTON.setVisible(true);
            THEMBUTTON.setVisible(false);
         SinhVien sinhVien = null;
-        if(loaiSV.equals("CTM"))
-            sinhVien = new SinhVienCTMau(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
+        if(loaiSV.equals(SinhVien.LoaiSinhVien.CTM))
+            sinhVien = new SinhVienCTMau(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc, 0.5, 5);
         else sinhVien = new SinhVienTinChi(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
         if(jTable1.getSelectedRowCount() == 0)
             JOptionPane.showMessageDialog(null, "Hãy chọn một sinh viên để chỉnh sửa!");
@@ -391,7 +392,7 @@ public class Home extends javax.swing.JPanel {
                 String ngaySinh = sinhVien.getNgaySinh();
                 String email = sinhVien.getEmail();
                 int khoaHoc = sinhVien.getKhoaHoc();
-                String nganhHoc = sinhVien.getNganhHoc();
+                ChuongTrinhDaoTao nganhHoc = sinhVien.getNganhHoc();
                 model.addRow(new Object[]{
                 loaiSV, hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc
         });

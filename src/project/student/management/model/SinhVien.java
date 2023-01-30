@@ -5,6 +5,7 @@
 package project.student.management.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import project.student.management.interfaces.XetTotNghiep;
 
 /**
@@ -12,35 +13,34 @@ import project.student.management.interfaces.XetTotNghiep;
  * @author duongpt
  */
 public abstract class SinhVien implements XetTotNghiep{
+    public static enum LoaiSinhVien{
+        TC, CTM;
+    }
+    
     private String hoTen;
     private String maSV;
     private String gioiTinh;
     private String ngaySinh;
     private String email;
     private int khoaHoc;
-    private String nganhHoc;
-    private ArrayList<MonHoc> listMonHoc;
+    private LoaiSinhVien loaiSinhVien;
+    private ChuongTrinhDaoTao nganhHoc;
+    private ArrayList<MonHoc2> listMonHoc;
 
-    public SinhVien(String hoTen, String maSV, String gioiTinh, String ngaySinh, String email, int khoaHoc, String nganhHoc, ArrayList<MonHoc> listMonHoc) {
+    public SinhVien(String hoTen, String maSV, String gioiTinh, String ngaySinh, String email, int khoaHoc, LoaiSinhVien loaiSinhVien, ChuongTrinhDaoTao nganhHoc, ArrayList<MonHoc2> listMonHoc) {
         this.hoTen = hoTen;
         this.maSV = maSV;
         this.gioiTinh = gioiTinh;
         this.ngaySinh = ngaySinh;
         this.email = email;
         this.khoaHoc = khoaHoc;
+        this.loaiSinhVien = loaiSinhVien;
         this.nganhHoc = nganhHoc;
         this.listMonHoc = listMonHoc;
     }
+
+
     
-    public SinhVien(String hoTen, String maSV, String gioiTinh, String ngaySinh, String email, int khoaHoc, String nganhHoc){
-        this.hoTen = hoTen;
-        this.maSV = maSV;
-        this.gioiTinh = gioiTinh;
-        this.ngaySinh = ngaySinh;
-        this.email = email;
-        this.khoaHoc = khoaHoc;
-        this.nganhHoc = nganhHoc;
-    }
 
     public String getHoTen() {
         return hoTen;
@@ -74,6 +74,16 @@ public abstract class SinhVien implements XetTotNghiep{
         this.ngaySinh = ngaySinh;
     }
 
+    public LoaiSinhVien getLoaiSinhVien() {
+        return loaiSinhVien;
+    }
+
+    public void setLoaiSinhVien(LoaiSinhVien loaiSinhVien) {
+        this.loaiSinhVien = loaiSinhVien;
+    }
+
+    
+
     public String getEmail() {
         return email;
     }
@@ -90,21 +100,23 @@ public abstract class SinhVien implements XetTotNghiep{
         this.khoaHoc = khoaHoc;
     }
 
-    public String getNganhHoc() {
+    public ChuongTrinhDaoTao getNganhHoc() {
         return nganhHoc;
     }
 
-    public void setNganhHoc(String nganhHoc) {
+    public void setNganhHoc(ChuongTrinhDaoTao nganhHoc) {
         this.nganhHoc = nganhHoc;
     }
 
-    public ArrayList<MonHoc> getListMonHoc() {
+    public ArrayList<MonHoc2> getListMonHoc() {
         return listMonHoc;
     }
 
-    public void setListMonHoc(ArrayList<MonHoc> listMonHoc) {
+    public void setListMonHoc(ArrayList<MonHoc2> listMonHoc) {
         this.listMonHoc = listMonHoc;
     }
+
+    
 
     @Override
     public boolean xetTotNghiep() {

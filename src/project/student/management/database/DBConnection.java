@@ -17,6 +17,8 @@ public class DBConnection {
     private static String USER_NAME = "root";
     private static String PASS_WORD = "";
     
+    
+    
     public static Connection getConnection(){
         try {
             conn = DriverManager.getConnection(URL_DB, USER_NAME, PASS_WORD);
@@ -25,4 +27,6 @@ public class DBConnection {
         }
         return conn;
     }
+    
+    
 }

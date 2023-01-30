@@ -1,21 +1,114 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 // do van hai 20207600
+// pham thai duong 20207595
 package project.student.management.view;
 
-/**
- *
- * @author seape
- */
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import project.student.management.database.DBConnection;
+import project.student.management.model.ChuongTrinhDaoTao;
+
+
 public class GiaoDienMonHoc extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Home
-     */
+    private final Connection conn;
+    private PreparedStatement ps;
+    
     public GiaoDienMonHoc() {
         initComponents();
+        conn = DBConnection.getConnection();      
+        
+        showComboBox();
+        
+
+
+    }
+    
+    private List<String> layDanhSachTatCaMonHoc() {
+        List<String> monHocList = new ArrayList<>();
+        try {
+            ps = conn.prepareStatement("SELECT tenMonHoc FROM monhoc WHERE 1");
+             ResultSet rs = ps.executeQuery();
+             
+             while (rs.next()) {
+                 String danhSachMonHoc = rs.getString(1);
+                 System.out.println("" + danhSachMonHoc);
+                 monHocList.add(danhSachMonHoc);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(GiaoDienMonHoc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if (monHocList.isEmpty()) {
+            return null;
+        } else {
+            return monHocList;
+        }
+
+    }
+    
+    private List<String> layDanhSachTatCaMonHoc222() {
+        List<String> monHocList = new ArrayList<>();
+        try {
+            ps = conn.prepareStatement("SELECT tenMonHoc FROM monhoc WHERE 1");
+             ResultSet rs = ps.executeQuery();
+             
+             while (rs.next()) {
+                 String danhSachMonHoc = rs.getString(1);
+                 System.out.println("" + danhSachMonHoc);
+                 monHocList.add(danhSachMonHoc);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(GiaoDienMonHoc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if (monHocList.isEmpty()) {
+            return null;
+        } else {
+            return monHocList;
+        }
+
+    }
+    
+
+    
+    private List<String> layDanhSachNganhHoc() {
+        List<String> monHocList = new ArrayList<>();
+        try {
+            ps = conn.prepareStatement("SELECT nganhHoc FROM ctdt WHERE 1");
+             ResultSet rs = ps.executeQuery();
+             
+             while (rs.next()) {
+                 String danhSachMonHoc = rs.getString(1);
+                 System.out.println("" + danhSachMonHoc);
+                 monHocList.add(danhSachMonHoc);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(GiaoDienMonHoc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if (monHocList.isEmpty()) {
+            return null;
+        } else {
+            return monHocList;
+        }
+    }
+    
+    private void showComboBox(){ //Thêm dữ liệu vào combobox
+        List<String> data = layDanhSachTatCaMonHoc();
+        data.add(0, "Mời chọn:"); //data[0]
+        for(String s : data){
+            monHocCombobox.addItem(s);
+        }
     }
 
     /**
@@ -31,7 +124,7 @@ public class GiaoDienMonHoc extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         themdiemButton = new com.k33ptoo.components.KButton();
-        MonhocCombobox = new javax.swing.JComboBox<>();
+        monHocCombobox = new javax.swing.JComboBox<>();
         kButton1 = new com.k33ptoo.components.KButton();
         jLabel1 = new javax.swing.JLabel();
         maSVTextField = new javax.swing.JTextField();
@@ -44,7 +137,7 @@ public class GiaoDienMonHoc extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         nganhhocCombobox = new javax.swing.JComboBox<>();
-        monhocCombobox = new javax.swing.JComboBox<>();
+        monHocCombobox2 = new javax.swing.JComboBox<>();
 
         kGradientPanel1.setkEndColor(new java.awt.Color(255, 255, 255));
         kGradientPanel1.setkGradientFocus(0);
@@ -78,9 +171,8 @@ public class GiaoDienMonHoc extends javax.swing.JPanel {
             }
         });
 
-        MonhocCombobox.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        MonhocCombobox.setMaximumRowCount(7);
-        MonhocCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cấu trúc dữ liệu và giải thuật", "Hệ điều hành", "Mạng máy tính", "Cơ sở dữ liệu", "Lập trình hướng đối tượng", "Quản trị kinh doanh", "Quản trị chiến lược", "Đạo đức kinh doanh", "Quản trị quá trình kinh doanh", "Quản trị đa văn hóa", "Sức bền vật liệu", "Cơ sở thiết kế máy", "Nguyên lý kỹ thuật điện tử", "Linh kiện bán dẫn và vi mạch", "Kỹ thuật đo lường và cảm biến", " " }));
+        monHocCombobox.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        monHocCombobox.setMaximumRowCount(7);
 
         kButton1.setText("Tìm");
 
@@ -120,7 +212,7 @@ public class GiaoDienMonHoc extends javax.swing.JPanel {
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
                         .addGap(129, 129, 129)
-                        .addComponent(MonhocCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(monHocCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1)
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
                         .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,7 +238,7 @@ public class GiaoDienMonHoc extends javax.swing.JPanel {
                         .addGap(96, 96, 96)
                         .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(diemckTextField)
-                            .addComponent(monhocCombobox, 0, 133, Short.MAX_VALUE)))
+                            .addComponent(monHocCombobox2, 0, 133, Short.MAX_VALUE)))
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -160,7 +252,7 @@ public class GiaoDienMonHoc extends javax.swing.JPanel {
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(MonhocCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(monHocCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(kButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(68, 68, 68)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -169,7 +261,7 @@ public class GiaoDienMonHoc extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addComponent(nganhhocCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(monhocCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(monHocCombobox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(93, 93, 93)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -205,37 +297,36 @@ public class GiaoDienMonHoc extends javax.swing.JPanel {
     private void nganhhocComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nganhhocComboboxActionPerformed
         // TODO add your handling code here:
         if(nganhhocCombobox.getSelectedIndex() == 0) {
-            monhocCombobox.removeAllItems();
-            monhocCombobox.addItem("Cấu trúc dữ liệu và giải thuật");
-            monhocCombobox.addItem("Hệ điều hành");
-            monhocCombobox.addItem("Mạng máy tính");
-            monhocCombobox.addItem("Cơ sở dữ liệu");
-            monhocCombobox.addItem("Lập trình hướng đối tượng");
+            monHocCombobox2.removeAllItems();
+            monHocCombobox2.addItem("Cấu trúc dữ liệu và giải thuật");
+            monHocCombobox2.addItem("Hệ điều hành");
+            monHocCombobox2.addItem("Mạng máy tính");
+            monHocCombobox2.addItem("Cơ sở dữ liệu");
+            monHocCombobox2.addItem("Lập trình hướng đối tượng");
             
         } 
         // quan tri kinh doanh
         if(nganhhocCombobox.getSelectedIndex() == 1) {
-            monhocCombobox.removeAllItems();
-            monhocCombobox.addItem("Quản trị kinh doanh");
-            monhocCombobox.addItem("Quản trị chiến lược");
-            monhocCombobox.addItem("Đạo đức kinh doanh");
-            monhocCombobox.addItem("Quản trị quá trình kinh doanh");
-            monhocCombobox.addItem("Quản trị đa văn hóa");
+            monHocCombobox2.removeAllItems();
+            monHocCombobox2.addItem("Quản trị kinh doanh");
+            monHocCombobox2.addItem("Quản trị chiến lược");
+            monHocCombobox2.addItem("Đạo đức kinh doanh");
+            monHocCombobox2.addItem("Quản trị quá trình kinh doanh");
+            monHocCombobox2.addItem("Quản trị đa văn hóa");
         }
         //ki thuat co dien tu
         if(nganhhocCombobox.getSelectedIndex() == 2) {
-            monhocCombobox.removeAllItems();
-            monhocCombobox.addItem("Sức bền vật liệu");
-           monhocCombobox.addItem("Cơ sở thiết kế máy");
-            monhocCombobox.addItem("Nguyên lý kỹ thuật điện tử");
-            monhocCombobox.addItem("Linh kiện bán dẫn và vi mạch");
-            monhocCombobox.addItem("Kỹ thuật đo lường và cảm biến");
+            monHocCombobox2.removeAllItems();
+            monHocCombobox2.addItem("Sức bền vật liệu");
+           monHocCombobox2.addItem("Cơ sở thiết kế máy");
+            monHocCombobox2.addItem("Nguyên lý kỹ thuật điện tử");
+            monHocCombobox2.addItem("Linh kiện bán dẫn và vi mạch");
+            monHocCombobox2.addItem("Kỹ thuật đo lường và cảm biến");
         }
     }//GEN-LAST:event_nganhhocComboboxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> MonhocCombobox;
     private javax.swing.JTextField diemckTextField;
     private javax.swing.JTextField diemgkTextField;
     private javax.swing.JLabel jLabel1;
@@ -250,8 +341,11 @@ public class GiaoDienMonHoc extends javax.swing.JPanel {
     private com.k33ptoo.components.KGradientPanel kGradientPanel1;
     private javax.swing.JTextField kihocTextField;
     private javax.swing.JTextField maSVTextField;
-    private javax.swing.JComboBox<String> monhocCombobox;
+    private javax.swing.JComboBox<String> monHocCombobox;
+    private javax.swing.JComboBox<String> monHocCombobox2;
     private javax.swing.JComboBox<String> nganhhocCombobox;
     private com.k33ptoo.components.KButton themdiemButton;
     // End of variables declaration//GEN-END:variables
+
+    
 }

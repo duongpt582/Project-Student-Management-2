@@ -7,6 +7,7 @@ package project.student.management.view;
 import java.util.*;
 import javax.swing.table.DefaultTableModel;
 import project.student.management.controller.QuanLyImpl;
+import project.student.management.model.ChuongTrinhDaoTao;
 import project.student.management.model.SinhVien;
 
 /**
@@ -143,7 +144,7 @@ public class ChuongTrinh extends javax.swing.JPanel {
             String ngaySinh = sinhVien.getNgaySinh();
             String email = sinhVien.getEmail();
             int khoaHoc = sinhVien.getKhoaHoc();
-            String nganhHoc = sinhVien.getNganhHoc();
+            ChuongTrinhDaoTao nganhHoc = sinhVien.getNganhHoc();
             model.addRow(new Object[]{
             hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc
         });
@@ -162,7 +163,7 @@ public class ChuongTrinh extends javax.swing.JPanel {
             String ngaySinh = sinhVien.getNgaySinh();
             String email = sinhVien.getEmail();
             int khoaHoc = sinhVien.getKhoaHoc();
-            String nganhHoc = sinhVien.getNganhHoc();
+            ChuongTrinhDaoTao nganhHoc = sinhVien.getNganhHoc();
             model.addRow(new Object[]{
             hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc
         });
