@@ -331,6 +331,16 @@ public class Home extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Hãy chọn một sinh viên để chỉnh sửa!");
         else if(jTable1.getSelectedRowCount() > 1)
             JOptionPane.showMessageDialog(null, "Chỉ được chọn một sinh viên để chỉnh sửa");
+        else if(hotenTextField.getText().equals("") ||
+                maSVTextField.getText().equals("") ||
+                gioitinhCombobox.getSelectedIndex() == 0 ||
+                ngaySinhDC.getDateFormatString().equals("") ||
+                emailTextField.getText().equals("") ||
+                khoahocTextField.getText().equals("") ||
+                nganhHocComboBox.getSelectedIndex() == 0 || 
+                loaiSVComboBox.getSelectedIndex() == 0){
+                JOptionPane.showMessageDialog(null, "Không được để trống!");
+        }
         else if(!isNumeric(khoahocTextField.getText())){
             JOptionPane.showMessageDialog(null, "Khóa học phải là số nguyên!");
         }
