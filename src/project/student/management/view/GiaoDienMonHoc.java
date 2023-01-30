@@ -198,8 +198,7 @@ public class GiaoDienMonHoc extends javax.swing.JPanel {
 
     private void themdiemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themdiemButtonActionPerformed
         // TODO add your handling code here:
-        ThemDiem themDiem = new ThemDiem();
-        themDiem.setVisible(true);
+        
     }//GEN-LAST:event_themdiemButtonActionPerformed
 
     private void nganhhocComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nganhhocComboboxActionPerformed
