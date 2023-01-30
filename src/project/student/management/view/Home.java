@@ -331,6 +331,9 @@ public class Home extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Hãy chọn một sinh viên để chỉnh sửa!");
         else if(jTable1.getSelectedRowCount() > 1)
             JOptionPane.showMessageDialog(null, "Chỉ được chọn một sinh viên để chỉnh sửa");
+        else if(!isNumeric(khoahocTextField.getText())){
+            JOptionPane.showMessageDialog(null, "Khóa học phải là số nguyên!");
+        }
         else{
             if(JOptionPane.showConfirmDialog(null, "Bạn có muốn chỉnh sửa thông tin của sinh viên này không?",
                     "Warning", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
@@ -350,7 +353,22 @@ public class Home extends javax.swing.JPanel {
                     loaiSV = "CTM";
                     sinhVien = new SinhVienCTMau(hoTen, maSV1, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
                 }
-                ql.suaThongTinSV(maSV, sinhVien);
+                
+                if(nganhHoc.equals(jTable1.getValueAt(jTable1.getSelectedRow(), 7).toString())){
+                    ql.suaThongTinSV(maSV, sinhVien);
+                    }
+                else{
+                    try{
+                        conn = DBConnection.getConnection();
+                        ps = conn.prepareStatement("DELETE FROM dsdk WHERE maSV=?");
+                        ps.setString(1, maSV);
+                        ps.executeUpdate();
+                        }
+                    catch(SQLException ex){
+                        Logger.getLogger(QuanLyImpl.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    ql.suaThongTinSV(maSV, sinhVien);
+                }
                 JOptionPane.showMessageDialog(null, "Chỉnh sửa thành công!");
                 showTable();
             } 

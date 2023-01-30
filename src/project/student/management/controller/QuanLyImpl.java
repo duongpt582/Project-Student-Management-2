@@ -51,6 +51,16 @@ public class QuanLyImpl implements QuanLy{
     public void xoaSV(String maSV) {
         try{
             conn = DBConnection.getConnection();
+            ps = conn.prepareStatement("DELETE FROM dsdk WHERE maSV=?");
+            ps.setString(1, maSV);
+            ps.executeUpdate();
+        }
+        catch(SQLException ex){
+            Logger.getLogger(QuanLyImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
+        try{
+            conn = DBConnection.getConnection();
             ps = conn.prepareStatement("DELETE FROM dssv WHERE maSV=?");
             ps.setString(1, maSV);
             ps.executeUpdate();
