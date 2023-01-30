@@ -5,6 +5,8 @@
 package project.student.management.view;
 import java.awt.event.KeyEvent;
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -201,11 +203,6 @@ public class Home extends javax.swing.JPanel {
                 jTable1MouseClicked(evt);
             }
         });
-        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTable1KeyPressed(evt);
-            }
-        });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(20);
@@ -252,30 +249,13 @@ public class Home extends javax.swing.JPanel {
         else{
             if(JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa sinh viên khỏi danh sách không?",
                     "Warning", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-                maSV = jTable1.getValueAt(jTable1.getSelectedRowCount(), 2).toString();
+                
                 ql.xoaSV(maSV);
                 JOptionPane.showMessageDialog(null, "Xóa sinh viên thành công!");
                 showTable();
             } 
         }
     }//GEN-LAST:event_xoaBtnActionPerformed
-
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
-        
-        
-//        if(jTable1.getSelectedRowCount() == 1){
-//            loaiSVComboBox.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRowCount(), 0).toString());
-//        hotenTextField.setText(jTable1.getValueAt(jTable1.getSelectedRowCount(), 1).toString());
-//        maSVTextField.setText(jTable1.getValueAt(jTable1.getSelectedRowCount(), 2).toString());
-//        gioitinhCombobox.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRowCount(), 3).toString());
-//        ngaySinhDC.setDateFormatString(jTable1.getValueAt(jTable1.getSelectedRowCount(), 4).toString());
-//        emailTextField.setText(jTable1.getValueAt(jTable1.getSelectedRowCount(), 5).toString());
-//        khoahocTextField.setText(jTable1.getValueAt(jTable1.getSelectedRowCount(), 6).toString());
-//        nganhHocComboBox.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRowCount(), 7).toString());
-//        }
-        
-    }//GEN-LAST:event_jTable1MouseClicked
 
     private void themButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themButtonActionPerformed
         // TODO add your handling code here:
@@ -373,21 +353,54 @@ public class Home extends javax.swing.JPanel {
             ql.themSV(sinhVien);
             JOptionPane.showMessageDialog(null, "Thêm sinh viên thành công!");
             showTable();
-        }
-        
-        
-        
-        
+        }  
     }//GEN-LAST:event_THEMBUTTONActionPerformed
 
     private void SUABUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SUABUTTONActionPerformed
         // TODO add your handling code here:
-        
+        SinhVien sinhVien = null;
+        if(jTable1.getSelectedRowCount() == 0)
+            JOptionPane.showMessageDialog(null, "Hãy chọn một sinh viên để chỉnh sửa!");
+        else if(jTable1.getSelectedRowCount() > 1)
+            JOptionPane.showMessageDialog(null, "Chỉ được chọn một sinh viên để chỉnh sửa");
+        else{
+            if(JOptionPane.showConfirmDialog(null, "Bạn có muốn chỉnh sửa thông tin của sinh viên này không?",
+                    "Warning", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                String hoTen = hotenTextField.getText();
+                String maSV1 = maSVTextField.getText();
+                String gioiTinh = gioitinhCombobox.getSelectedItem().toString();
+                String ngaySinh = convertUtilToSql(ngaySinhDC.getDate()).toString();
+                String email = emailTextField.getText();
+                int khoaHoc = Integer.parseInt(khoahocTextField.getText());
+                String nganhHoc = nganhHocComboBox.getSelectedItem().toString();
+                String loaiSV;
+                if(loaiSVComboBox.getSelectedIndex() == 1){
+                    loaiSV = "TC";
+                    sinhVien = new SinhVienTinChi(hoTen, maSV1, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
+                }
+                else if(loaiSVComboBox.getSelectedIndex() == 2){
+                    loaiSV = "CTM";
+                    sinhVien = new SinhVienCTMau(hoTen, maSV1, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
+                }
+                ql.suaThongTinSV(maSV, sinhVien);
+                JOptionPane.showMessageDialog(null, "Chỉnh sửa thành công!");
+                showTable();
+            } 
+        }
     }//GEN-LAST:event_SUABUTTONActionPerformed
 
-    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTable1KeyPressed
+        if(jTable1.getSelectedRowCount() == 1){
+            maSV = jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString();
+            try {
+                getInformationFromTableToTxt();
+            } catch (ParseException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+    }//GEN-LAST:event_jTable1MouseClicked
 
     private boolean isNumeric(String str) { 
         try {  
@@ -403,15 +416,27 @@ public class Home extends javax.swing.JPanel {
         return sDate;
     }
     
-    private void getInformationFromTableToTxt(){
-        loaiSVComboBox.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRowCount(), 0).toString());
-        hotenTextField.setText(jTable1.getValueAt(jTable1.getSelectedRowCount(), 1).toString());
-        maSVTextField.setText(jTable1.getValueAt(jTable1.getSelectedRowCount(), 2).toString());
-        gioitinhCombobox.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRowCount(), 3).toString());
-        ngaySinhDC.setDateFormatString(jTable1.getValueAt(jTable1.getSelectedRowCount(), 4).toString());
-        emailTextField.setText(jTable1.getValueAt(jTable1.getSelectedRowCount(), 5).toString());
-        khoahocTextField.setText(jTable1.getValueAt(jTable1.getSelectedRowCount(), 6).toString());
-        nganhHocComboBox.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRowCount(), 7).toString());
+    private void getInformationFromTableToTxt() throws ParseException{
+        loaiSVComboBox.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+        if(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString().equals("TC")){
+            loaiSVComboBox.setSelectedItem("Tín chỉ");
+        }
+        else if(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString().equals("CTM")){
+            loaiSVComboBox.setSelectedItem("Chương trình mẫu");
+        }
+        hotenTextField.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
+        maSVTextField.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
+        gioitinhCombobox.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
+        
+        if(jTable1.getSelectedRowCount() == 1){
+            String ngaySinh = jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString();
+            java.util.Date ngaySinhUltiDate = new SimpleDateFormat("yyyy-MM-dd").parse(ngaySinh);
+            ngaySinhDC.setDate(ngaySinhUltiDate);
+        }
+        
+        emailTextField.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 5).toString());
+        khoahocTextField.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 6).toString());
+        nganhHocComboBox.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRow(), 7).toString());
     }
     
     private void showTable(){
