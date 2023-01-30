@@ -81,11 +81,6 @@ public class Home extends javax.swing.JPanel {
         kGradientPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         themButton.setText("Thêm sinh viên");
-        themButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                themButtonMouseClicked(evt);
-            }
-        });
         themButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 themButtonActionPerformed(evt);
@@ -234,12 +229,6 @@ public class Home extends javax.swing.JPanel {
         timkiemField.setText("");
     }//GEN-LAST:event_timkiemFieldMouseClicked
 
-    private void themButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_themButtonMouseClicked
-        // TODO add your handling code here:
-//        ThemSV themSV = new ThemSV();
-//        themSV.setVisible(true);
-    }//GEN-LAST:event_themButtonMouseClicked
-
     private void xoaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoaBtnActionPerformed
         // TODO add your handling code here:
         if(jTable1.getSelectedRowCount() == 0)
@@ -259,14 +248,9 @@ public class Home extends javax.swing.JPanel {
 
     private void themButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themButtonActionPerformed
         // TODO add your handling code here:
-//        ThemSV themSV = new ThemSV();
-//        themSV.setVisible(true);
-//        if(!themSV.isVisible()){
-//            showTable();
-//        }
-           jPanel1.setVisible(true);
-           SUABUTTON.setVisible(false);
-           THEMBUTTON.setVisible(true);
+        jPanel1.setVisible(true);
+        SUABUTTON.setVisible(false);
+        THEMBUTTON.setVisible(true);
     }//GEN-LAST:event_themButtonActionPerformed
 
     private void suaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suaBtnActionPerformed
@@ -274,29 +258,13 @@ public class Home extends javax.swing.JPanel {
         jPanel1.setVisible(true);
         SUABUTTON.setVisible(true);
         THEMBUTTON.setVisible(false);
-//        SinhVien sinhVien = null;
-//        if(loaiSV.equals("CTM"))
-//            sinhVien = new SinhVienCTMau(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
-//        else sinhVien = new SinhVienTinChi(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
-//        if(jTable1.getSelectedRowCount() == 0)
-//            JOptionPane.showMessageDialog(null, "Hãy chọn một sinh viên để chỉnh sửa!");
-//        else if(jTable1.getSelectedRowCount() > 1)
-//            JOptionPane.showMessageDialog(null, "Chỉ được chọn một sinh viên để chỉnh sửa");
-//        else{
-//            if(JOptionPane.showConfirmDialog(null, "Bạn có muốn chỉnh sửa thông tin của sinh viên này không?",
-//                    "Warning", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-//                ql.suaThongTinSV(maSV, sinhVien);
-//                JOptionPane.showMessageDialog(null, "Chỉnh sửa thành công!");
-//                showTable();
-//            } 
-//        }
     }//GEN-LAST:event_suaBtnActionPerformed
 
     private void timkiemFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_timkiemFieldKeyPressed
         // TODO add your handling code here:
-        List<SinhVien> listSV = ql.timKiemSV(timkiemField.getText());
         model = (DefaultTableModel) jTable1.getModel();
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            List<SinhVien> listSV = ql.timKiemSV(timkiemField.getText());
             model.setRowCount(0);
             for (SinhVien sinhVien : listSV) {
                 String loaiSV;
@@ -428,11 +396,9 @@ public class Home extends javax.swing.JPanel {
         maSVTextField.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
         gioitinhCombobox.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
         
-        if(jTable1.getSelectedRowCount() == 1){
-            String ngaySinh = jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString();
-            java.util.Date ngaySinhUltiDate = new SimpleDateFormat("yyyy-MM-dd").parse(ngaySinh);
-            ngaySinhDC.setDate(ngaySinhUltiDate);
-        }
+        String ngaySinh = jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString();
+        java.util.Date ngaySinhUltiDate = new SimpleDateFormat("yyyy-MM-dd").parse(ngaySinh);
+        ngaySinhDC.setDate(ngaySinhUltiDate);
         
         emailTextField.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 5).toString());
         khoahocTextField.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 6).toString());
