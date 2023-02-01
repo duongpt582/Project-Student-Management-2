@@ -90,7 +90,7 @@
               <Font name="Segoe UI" size="24" style="3"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+              <Color blue="ff" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/icon/graduated.png"/>
@@ -102,6 +102,9 @@
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI Light" size="18" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="cc" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Nh&#x1ead;p t&#xe0;i kho&#x1ea3;n"/>
             <Property name="toolTipText" type="java.lang.String" value="Nh&#x1ead;p t&#xe0;i kho&#x1ea3;n"/>
@@ -122,7 +125,6 @@
         </Component>
         <Component class="javax.swing.JPasswordField" name="passwordField">
           <Properties>
-            <Property name="text" type="java.lang.String" value="PassWord"/>
             <Property name="toolTipText" type="java.lang.String" value="Nh&#x1ead;p m&#x1ead;t kh&#x1ea9;u"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">

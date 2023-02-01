@@ -1,6 +1,7 @@
 // do van hai 20207600
 package project.student.management.view;
 
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -38,11 +39,12 @@ public class DangNhap extends javax.swing.JFrame {
         kGradientPanel1.setkStartColor(new java.awt.Color(204, 255, 204));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(51, 51, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/graduated.png"))); // NOI18N
         jLabel1.setText("Quản lý sinh viên");
 
         textField_DangNhap.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        textField_DangNhap.setForeground(new java.awt.Color(204, 204, 204));
         textField_DangNhap.setText("Nhập tài khoản");
         textField_DangNhap.setToolTipText("Nhập tài khoản");
         textField_DangNhap.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 4, 0, new java.awt.Color(255, 204, 153)));
@@ -53,7 +55,6 @@ public class DangNhap extends javax.swing.JFrame {
             }
         });
 
-        passwordField.setText("PassWord");
         passwordField.setToolTipText("Nhập mật khẩu");
         passwordField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 4, 0, new java.awt.Color(255, 204, 153)));
         passwordField.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -145,6 +146,7 @@ public class DangNhap extends javax.swing.JFrame {
     private void textField_DangNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textField_DangNhapMouseClicked
         // TODO add your handling code here:
         textField_DangNhap.setText("");
+        textField_DangNhap.setForeground(Color.BLACK);
     }//GEN-LAST:event_textField_DangNhapMouseClicked
 
     private void passwordFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordFieldMouseClicked
