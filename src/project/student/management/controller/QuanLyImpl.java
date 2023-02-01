@@ -18,19 +18,23 @@ import project.student.management.model.MonHoc;
 
 /**
  *
- * @author Pham Thai Duong and Nguyen Minh Duc
+ * @author Pham Thai Duong 20207595
+ * and Nguyen Minh Duc 20207592
  */
 public class QuanLyImpl implements QuanLy{
     private Connection conn;
     private PreparedStatement ps;
 
     @Override
-    public void themSV(SinhVien sinhVien) {
+    public void themSV(SinhVien sinhVien) { // ghi đè phương thức thêm sinh viên - Nguyen Minh Duc 20207592
         try {
-            conn = DBConnection.getConnection();
+            conn = DBConnection.getConnection(); // tạo kết nối tới cơ sở dữ liệu
             ps = conn.prepareStatement("INSERT INTO dssv"
                     + "(loaiSV, hoTen, maSV, gioiTinh, ngaySinh, Email, khoaHoc, nganhHoc) "
-                    + "VALUES (?,?,?,?,?,?,?,?)");
+                    + "VALUES (?,?,?,?,?,?,?,?)"); // câu lệnh truy vấn cơ sở dữ liệu
+            /**
+             * các câu lệnh để lấy thông tin của tham số truyền vào và gán cho các tham số ở câu truy vấn
+             */
             if(sinhVien instanceof SinhVienCTMau)
                 ps.setString(1, "CTM");
             else ps.setString(1, "TC");
@@ -41,30 +45,30 @@ public class QuanLyImpl implements QuanLy{
             ps.setString(6, sinhVien.getEmail());
             ps.setInt(7, sinhVien.getKhoaHoc());
             ps.setString(8, sinhVien.getNganhHoc());
-            ps.executeUpdate();
-            conn.close();
+            ps.executeUpdate(); // thêm sinh viên vào bảng
+            conn.close(); // đóng kết nối cơ sở dữ liệu
         } catch (SQLException ex) {
             Logger.getLogger(QuanLyImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
-    public void xoaSV(String maSV) {
+    public void xoaSV(String maSV) { // ghi đè phương thức xóa sinh viên - Nguyen Minh Duc 20207592
         try{
-            conn = DBConnection.getConnection();
-            ps = conn.prepareStatement("DELETE FROM dsdk WHERE maSV=?");
-            ps.setString(1, maSV);
-            ps.executeUpdate();
+            conn = DBConnection.getConnection(); // tạo kết nối tới cơ sở dữ liệu 
+            ps = conn.prepareStatement("DELETE FROM dsdk WHERE maSV=?"); // câu lệnh truy vấn cơ sở dữ liệu
+            ps.setString(1, maSV); // gán giá trị tham số truyền vào cho tham số ở câu truy vấn
+            ps.executeUpdate(); // xóa các môn đã đăng ký của sinh viên bị xóa
         }
         catch(SQLException ex){
             Logger.getLogger(QuanLyImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
       
         try{
-            conn = DBConnection.getConnection();
-            ps = conn.prepareStatement("DELETE FROM dssv WHERE maSV=?");
-            ps.setString(1, maSV);
-            ps.executeUpdate();
+            conn = DBConnection.getConnection(); // tạo kết nối tới cơ sở dữ liệu
+            ps = conn.prepareStatement("DELETE FROM dssv WHERE maSV=?"); // câu lệnh truy vấn cơ sở dữ liệu
+            ps.setString(1, maSV); // gán giá trị tham số truyền vào cho tham số ở câu truy vấn
+            ps.executeUpdate(); // xóa sinh viên khỏi bảng
         }
         catch(SQLException ex){
             Logger.getLogger(QuanLyImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -72,11 +76,14 @@ public class QuanLyImpl implements QuanLy{
     }
 
     @Override
-    public void suaThongTinSV(String maSV, SinhVien sinhVien) {
+    public void suaThongTinSV(String maSV, SinhVien sinhVien) { // ghi đè phương thức chỉnh sửa thông tin sinh viên - Nguyen Minh Duc 20207592
         try{
-            conn = DBConnection.getConnection();
+            conn = DBConnection.getConnection(); // tạo kết nối cơ sở dữ liệu
             ps = conn.prepareStatement("UPDATE dssv "
-                    + "SET loaiSV=?, hoTen=?, maSV=?, gioiTinh=?, ngaySinh=?, Email=?, khoaHoc=?, nganhHoc=? WHERE maSV=?");
+                    + "SET loaiSV=?, hoTen=?, maSV=?, gioiTinh=?, ngaySinh=?, Email=?, khoaHoc=?, nganhHoc=? WHERE maSV=?"); // câu lệnh truy vấn cơ sở dữ liệu
+            /**
+             * các câu lệnh để lấy thông tin của tham số truyền vào và gán cho các tham số ở câu truy vấn
+             */
             if(sinhVien instanceof SinhVienCTMau)
                 ps.setString(1, "CTM");
             else ps.setString(1, "TC");
@@ -88,8 +95,8 @@ public class QuanLyImpl implements QuanLy{
             ps.setInt(7, sinhVien.getKhoaHoc());
             ps.setString(8, sinhVien.getNganhHoc());
             ps.setString(9, maSV);
-            ps.executeUpdate();
-            conn.close();
+            ps.executeUpdate(); // chỉnh sửa thông tin sinh viên
+            conn.close(); // đóng kết nối cơ sở dữ liệu
         }
         catch(SQLException ex){
             Logger.getLogger(QuanLyImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -97,17 +104,21 @@ public class QuanLyImpl implements QuanLy{
     }
 
     @Override
-    public List<SinhVien> timKiemSV(String valueSearch) {
+    public List<SinhVien> timKiemSV(String valueSearch) { // ghi đè phương thức tìm kiếm sinh viên - Nguyen Minh Duc 20207592
         List<SinhVien> listSV = new ArrayList<SinhVien>();
         SinhVien sinhVien = null;
         try {
-            conn = DBConnection.getConnection();
-            ps = conn.prepareStatement("SELECT * FROM dssv WHERE hoTen like ? or maSV like ? or khoaHoc like ?");
+            conn = DBConnection.getConnection(); // tạo kết nối cơ sở dữ liệu
+            ps = conn.prepareStatement("SELECT * FROM dssv WHERE hoTen like ? or maSV like ? or khoaHoc like ?"); // câu lệnh truy vấn cơ sở dữ liệu
+            /**
+             * các câu lệnh để lấy thông tin của tham số truyền vào và gán cho các tham số ở câu truy vấn
+             */
             ps.setString(1, "%" + valueSearch + "%");
             ps.setString(2, "%" + valueSearch + "%");
             ps.setString(3, "%" + valueSearch + "%");
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            ResultSet rs = ps.executeQuery(); // gán đối tượng tìm được vào biến "rs" kiểu ResultSet
+            while(rs.next()){ // lưu các giá trị của các thuộc tính từ sinh viên tìm được vào các biến, 
+                            // đồng thời khởi tạo đối tượng "sinhVien" mang các thuộc tính đó và thêm vào list sinh viên
                 String loaiSV = rs.getString("loaiSV");
                 String hoTen = rs.getString("hoTen");
                 String maSV = rs.getString("maSV");
@@ -123,10 +134,11 @@ public class QuanLyImpl implements QuanLy{
                     sinhVien = new SinhVienTinChi(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
                 listSV.add(sinhVien);
             }
+            conn.close(); // đóng kết nối cơ sở dữ liệu
         } catch (SQLException ex) {
             Logger.getLogger(QuanLyImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return listSV;
+        return listSV; // trả về list sinh viên
     }
 
     @Override
@@ -173,15 +185,16 @@ public class QuanLyImpl implements QuanLy{
     
 
     @Override
-    public List<SinhVien> inDSSV(String loaiSV) {
+    public List<SinhVien> inDSSV(String loaiSV) { // ghi đè phương thức in danh sách sinh viên - Nguyen Minh Duc 20207592
         List<SinhVien> listSV = new ArrayList<SinhVien>();
         SinhVien sinhVien = null;
         try{
-            conn = DBConnection.getConnection();
-            ps = conn.prepareStatement("SELECT * FROM dssv WHERE loaiSV=?");
-            ps.setString(1, loaiSV);
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            conn = DBConnection.getConnection(); // tạo kết nối cơ sở dữ liệu
+            ps = conn.prepareStatement("SELECT * FROM dssv WHERE loaiSV=?"); // câu lệnh truy vấn cơ sở dữ liệu
+            ps.setString(1, loaiSV); // gán giá trị tham số truyền vào cho tham số ở câu truy vấn
+            ResultSet rs = ps.executeQuery(); // gán đối tượng tìm được vào biến "rs" kiểu ResultSet
+            while(rs.next()){ // lưu các giá trị của các thuộc tính từ sinh viên tìm được vào các biến, 
+                            // đồng thời khởi tạo đối tượng "sinhVien" mang các thuộc tính đó và thêm vào list sinh viên
                 String loaiSV1 = rs.getString("loaiSV");
                 String hoTen = rs.getString("hoTen");
                 String maSV = rs.getString("maSV");
@@ -198,12 +211,12 @@ public class QuanLyImpl implements QuanLy{
                 
                 listSV.add(sinhVien);
             }
-            conn.close();
+            conn.close(); // đóng kết nối cơ sở dữ liệu
         }
         catch(SQLException ex){
             Logger.getLogger(QuanLyImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return listSV;
+        return listSV; // trả về list sinh viên
     }
 
     @Override
@@ -226,10 +239,4 @@ public class QuanLyImpl implements QuanLy{
         
         return sinhVienList;
     }
-    
-   
-
-    
-
-   
 }

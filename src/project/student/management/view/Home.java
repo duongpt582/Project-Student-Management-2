@@ -7,7 +7,6 @@ import java.awt.event.KeyEvent;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,10 +20,11 @@ import project.student.management.model.SinhVienTinChi;
 
 /**
  *
- * @author seape
+ * @author Do Van Hai 20207600
+ * and Nguyen Minh Duc 20207592
  */
 public class Home extends javax.swing.JPanel {
-    QuanLyImpl ql = new QuanLyImpl();
+    QuanLyImpl ql = new QuanLyImpl(); // tạo đối tượng "ql" của lớp "QuanLyImpl"
     private Connection conn;
     private PreparedStatement ps;
     DefaultTableModel model;
@@ -88,7 +88,7 @@ public class Home extends javax.swing.JPanel {
                 themButtonActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(themButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, -1, -1));
+        kGradientPanel1.add(themButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
 
         suaBtn.setText("Chỉnh sửa");
         suaBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -96,7 +96,7 @@ public class Home extends javax.swing.JPanel {
                 suaBtnActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(suaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, -1, -1));
+        kGradientPanel1.add(suaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, -1, -1));
 
         xoaBtn.setText("Xóa sinh viên");
         xoaBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -104,7 +104,7 @@ public class Home extends javax.swing.JPanel {
                 xoaBtnActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(xoaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 70, -1, -1));
+        kGradientPanel1.add(xoaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 80, -1, -1));
 
         timkiemField.setText("Tìm kiếm với tên, mã sinh viên, khóa học");
         timkiemField.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -117,7 +117,7 @@ public class Home extends javax.swing.JPanel {
                 timkiemFieldKeyPressed(evt);
             }
         });
-        kGradientPanel1.add(timkiemField, new org.netbeans.lib.awtextra.AbsoluteConstraints(258, 6, 570, 37));
+        kGradientPanel1.add(timkiemField, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 570, 37));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -185,7 +185,7 @@ public class Home extends javax.swing.JPanel {
         });
         jPanel1.add(THEMBUTTON, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 150, 154, -1));
 
-        kGradientPanel1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 980, 220));
+        kGradientPanel1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 980, 220));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -209,7 +209,7 @@ public class Home extends javax.swing.JPanel {
             jTable1.getColumnModel().getColumn(7).setPreferredWidth(90);
         }
 
-        kGradientPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 420, 850, 242));
+        kGradientPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 400, 930, 242));
 
         jLabel9.setText(".");
         kGradientPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 270, -1, -1));
@@ -241,7 +241,7 @@ public class Home extends javax.swing.JPanel {
             if(JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa sinh viên khỏi danh sách không?",
                     "Warning", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
                 
-                ql.xoaSV(maSV);
+                ql.xoaSV(maSV); // gọi đến phương thức xoaSV() của "ql", tham số truyền vào được lấy trực tiếp từ bảng
                 JOptionPane.showMessageDialog(null, "Xóa sinh viên thành công!");
                 showTable();
             } 
@@ -265,10 +265,10 @@ public class Home extends javax.swing.JPanel {
     private void timkiemFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_timkiemFieldKeyPressed
         // TODO add your handling code here:
         model = (DefaultTableModel) jTable1.getModel();
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            List<SinhVien> listSV = ql.timKiemSV(timkiemField.getText());
-            model.setRowCount(0);
-            for (SinhVien sinhVien : listSV) {
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){ // kiểm tra nhấn "Enter" khi đang nhập ở textfield
+            List<SinhVien> listSV = ql.timKiemSV(timkiemField.getText()); // khai báo listSV và gán bằng giá trị trả về của phương thức timkiemSV()
+            model.setRowCount(0); // đặt số hàng của bảng bằng 0
+            for (SinhVien sinhVien : listSV) { // duyệt toàn bộ đối tượng của listSV, lấy giá trị các thuộc tính của sinh viên và thêm vào hàng của bảng
                 String loaiSV;
                 if(sinhVien instanceof SinhVienCTMau)
                     loaiSV = "CTM";
@@ -320,9 +320,9 @@ public class Home extends javax.swing.JPanel {
                 loaiSV = "CTM";
                 sinhVien = new SinhVienCTMau(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
             }
-            ql.themSV(sinhVien);
+            ql.themSV(sinhVien); // gọi đến phương thức themSV(), tham số truyền vào được lấy ở trên
             JOptionPane.showMessageDialog(null, "Thêm sinh viên thành công!");
-            showTable();
+            showTable(); // gọi đến phương thức in ra thông tin của bảng
         }  
     }//GEN-LAST:event_THEMBUTTONActionPerformed
 
@@ -367,10 +367,11 @@ public class Home extends javax.swing.JPanel {
                 }
                 
                 if(nganhHoc.equals(jTable1.getValueAt(jTable1.getSelectedRow(), 7).toString())){
-                    ql.suaThongTinSV(maSV, sinhVien);
+                    ql.suaThongTinSV(maSV, sinhVien); // gọi đến phương thức suaThongTinSV(), tham số truyền vào được lấy ở trên
                     }
                 else{
                     try{
+                        // các câu lệnh để xóa danh sách các môn học của sinh viên được chỉnh sửa thông tin (nếu chỉnh sửa ngành học)
                         conn = DBConnection.getConnection();
                         ps = conn.prepareStatement("DELETE FROM dsdk WHERE maSV=?");
                         ps.setString(1, maSV);
@@ -379,10 +380,10 @@ public class Home extends javax.swing.JPanel {
                     catch(SQLException ex){
                         Logger.getLogger(QuanLyImpl.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    ql.suaThongTinSV(maSV, sinhVien);
+                    ql.suaThongTinSV(maSV, sinhVien); // gọi đến phương thức suaThongTinSV(), tham số truyền vào được lấy ở trên
                 }
                 JOptionPane.showMessageDialog(null, "Chỉnh sửa thành công!");
-                showTable();
+                showTable(); // gọi đến phương thức in ra thông tin của bảng
             } 
         }
     }//GEN-LAST:event_SUABUTTONActionPerformed
@@ -392,7 +393,7 @@ public class Home extends javax.swing.JPanel {
         if(jTable1.getSelectedRowCount() == 1){
             maSV = jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString();
             try {
-                getInformationFromTableToTxt();
+                getInformationFromTableToTxt(); // gọi đến phương thức lấy thông tin từ bảng ra các textfield
             } catch (ParseException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -400,7 +401,7 @@ public class Home extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private boolean isNumeric(String str) { 
+    private boolean isNumeric(String str) { // phương thức để kiểm tra số nguyên
         try {  
             Integer.parseInt(str);  
             return true;
@@ -409,12 +410,12 @@ public class Home extends javax.swing.JPanel {
         }  
     }
     
-    private static java.sql.Date convertUtilToSql(java.util.Date uDate) {
+    private static java.sql.Date convertUtilToSql(java.util.Date uDate) { // phương thức để đổi giá trị kiểu util Date qua sql Date
         java.sql.Date sDate = new java.sql.Date(uDate.getTime());
         return sDate;
     }
     
-    private void getInformationFromTableToTxt() throws ParseException{
+    private void getInformationFromTableToTxt() throws ParseException{ // phương thức dùng để lấy thông tin từ bảng và gán vào các textfield
         loaiSVComboBox.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
         if(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString().equals("TC")){
             loaiSVComboBox.setSelectedItem("Tín chỉ");
@@ -435,7 +436,7 @@ public class Home extends javax.swing.JPanel {
         nganhHocComboBox.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRow(), 7).toString());
     }
     
-    private void showTable(){
+    private void showTable(){ // phương thức dùng để in ra thông tin của bảng
         try {
             model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);

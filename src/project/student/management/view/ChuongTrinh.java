@@ -11,10 +11,11 @@ import project.student.management.model.SinhVien;
 
 /**
  *
- * @author seape
+ * @author Do Van Hai 20207600
+ * and Nguyen Minh Duc 20207592
  */
 public class ChuongTrinh extends javax.swing.JPanel {
-    QuanLyImpl ql = new QuanLyImpl();
+    QuanLyImpl ql = new QuanLyImpl(); // tạo đối tượng "ql" của lớp "QuanLyImpl"
     DefaultTableModel model;
     /**
      * Creates new form Home
@@ -122,10 +123,10 @@ public class ChuongTrinh extends javax.swing.JPanel {
 
     private void chuongtrinh_tinchiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chuongtrinh_tinchiButtonActionPerformed
         // TODO add your handling code here:
-        model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
-        List<SinhVien> listSV = ql.inDSSV("TC");
-        for (SinhVien sinhVien : listSV) {
+        model = (DefaultTableModel) jTable1.getModel(); // lấy mô hình của bảng
+        model.setRowCount(0); // đặt số hàng bằng 0
+        List<SinhVien> listSV = ql.inDSSV("TC"); // khai báo "listSV" và gán bằng giá trị trả về của phương thức inDSSV() của "ql"
+        for (SinhVien sinhVien : listSV) { // duyệt từng đối tượng của "listSV", sau đó thêm vào bảng
             String hoTen = sinhVien.getHoTen();
             String maSV = sinhVien.getMaSV();
             String gioiTinh = sinhVien.getGioiTinh();
@@ -141,10 +142,10 @@ public class ChuongTrinh extends javax.swing.JPanel {
 
     private void chuongtrinh_mauButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chuongtrinh_mauButtonActionPerformed
         // TODO add your handling code here:
-        model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
-        List<SinhVien> listSV = ql.inDSSV("CTM");
-        for (SinhVien sinhVien : listSV) {
+        model = (DefaultTableModel) jTable1.getModel(); // lấy mô hình của bảng
+        model.setRowCount(0); // đặt số hàng bằng 0
+        List<SinhVien> listSV = ql.inDSSV("CTM"); // khai báo "listSV" và gán bằng giá trị trả về của phương thức inDSSV() của "ql"
+        for (SinhVien sinhVien : listSV) { // duyệt từng đối tượng của "listSV", sau đó thêm vào bảng
             String hoTen = sinhVien.getHoTen();
             String maSV = sinhVien.getMaSV();
             String gioiTinh = sinhVien.getGioiTinh();

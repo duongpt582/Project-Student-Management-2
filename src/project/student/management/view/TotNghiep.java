@@ -193,7 +193,7 @@ public class TotNghiep extends javax.swing.JPanel {
         kGradientPanel1.setkStartColor(new java.awt.Color(204, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
-        jLabel1.setText("Danh sách sinh được viên tốt nghiệp");
+        jLabel1.setText("Danh sách sinh viên được tốt nghiệp");
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);

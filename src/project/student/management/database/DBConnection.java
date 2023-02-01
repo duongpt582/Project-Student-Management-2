@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
  *
- * @author DucNguyen
+ * @author Nguyen Minh Duc 20207592
  */
 public class DBConnection {
     private static Connection conn;
@@ -17,7 +17,7 @@ public class DBConnection {
     private static String USER_NAME = "root";
     private static String PASS_WORD = "";
     
-    public static Connection getConnection(){
+    public static Connection getConnection(){ // phương thức kết nối cơ sở dữ liệu
         try {
             conn = DriverManager.getConnection(URL_DB, USER_NAME, PASS_WORD);
         } catch (SQLException ex) {

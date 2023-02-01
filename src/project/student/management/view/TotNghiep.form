@@ -141,7 +141,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="24" style="3"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Danh s&#xe1;ch sinh &#x111;&#x1b0;&#x1ee3;c vi&#xea;n t&#x1ed1;t nghi&#x1ec7;p"/>
+            <Property name="text" type="java.lang.String" value="Danh s&#xe1;ch sinh vi&#xea;n &#x111;&#x1b0;&#x1ee3;c t&#x1ed1;t nghi&#x1ec7;p"/>
           </Properties>
         </Component>
       </SubComponents>
