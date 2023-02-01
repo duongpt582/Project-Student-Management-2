@@ -38,7 +38,7 @@ public class GiaoDienMonHoc extends javax.swing.JPanel {
 
     }
     
-    private List<MonHoc> layDanhSachTatCaMonHoc() {
+    private List<MonHoc> layDanhSachTatCaMonHoc() { // phương thức lấy danh sách tất cả các môn học từ cơ sở dữ liệu
         List<MonHoc> monHocList = new ArrayList<>();
         try {
             ps = conn.prepareStatement("SELECT * FROM monhoc WHERE 1");
@@ -66,7 +66,7 @@ public class GiaoDienMonHoc extends javax.swing.JPanel {
     }
 
     
-    private List<String> layDanhSachNganhHoc() {
+    private List<String> layDanhSachNganhHoc() { // phương thức lấy danh sách các ngành học từ cơ sở dữ liệu
         List<String> monHocList = new ArrayList<>();
         try {
             ps = conn.prepareStatement("SELECT nganhHoc FROM ctdt WHERE 1");
@@ -100,7 +100,7 @@ public class GiaoDienMonHoc extends javax.swing.JPanel {
         }
     }
     
-    private void showTable(List<SinhVien> sinhViens){
+    private void showTable(List<SinhVien> sinhViens){ // phương thức để hiện bảng danh sách sinh viên 
 
         model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);

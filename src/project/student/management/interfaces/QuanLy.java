@@ -9,7 +9,7 @@ import project.student.management.model.SinhVien;
 
 /**
  *
- * @author Pham Thai Duong
+ * @author Pham Thai Duong 20207595
  */
 public interface QuanLy {
     public void themSV(SinhVien sinhVien); // phương thức thêm sinh viên

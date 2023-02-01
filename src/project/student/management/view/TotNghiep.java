@@ -19,7 +19,8 @@ import project.student.management.model.SinhVienTinChi;
 
 /**
  *
- * @author seape and duongpt
+ * @author Do Van Hai 20207600
+ * and Pham Thai Duong 20207595
  */
 public class TotNghiep extends javax.swing.JPanel {
 
@@ -28,22 +29,23 @@ public class TotNghiep extends javax.swing.JPanel {
      * Creates new form Home
      */
     
-    private QuanLyImpl quanLyImpl;
+    private QuanLyImpl quanLyImpl; // khai báo đối tượng "quanLyImpl" của lớp "QuanLyImpl"
     private Connection conn;
     private PreparedStatement ps;
 
     public TotNghiep() {
         initComponents();
         
-        quanLyImpl = new QuanLyImpl();
+        quanLyImpl = new QuanLyImpl(); // khởi tạo đối tượng
         
 //        SinhVienTinChi sinhVienTinChi = new SinhVienTinChi(5,5);
         List<SinhVien> sinhViens = layDanhSachSinhVien();
-        List<SinhVien> DSSVDuocTotNghiep = quanLyImpl.inDSSVDuocTotNghiep(sinhViens);
+        List<SinhVien> DSSVDuocTotNghiep = quanLyImpl.inDSSVDuocTotNghiep(sinhViens); // gọi đến phương thức in danh sách sinh viên được tốt nghiệp, giá trị trả về
+                                                                                // được gán cho DSSVDuocTotNghiep có kiểu List<SinhVien>
         
         showTable(DSSVDuocTotNghiep);
     }
-    private void showTable(List<SinhVien> sinhViens){
+    private void showTable(List<SinhVien> sinhViens){ // phương thức để hiện bảng danh sách sinh viên
         String loaiSV = null;
         model = (DefaultTableModel) danhsachTable.getModel();
         model.setRowCount(0);
@@ -71,7 +73,7 @@ public class TotNghiep extends javax.swing.JPanel {
     }
 
     
-    private SinhVien xuLyTotNghiepMotSV(String maSV, String nganhHoc) {
+    private SinhVien xuLyTotNghiepMotSV(String maSV, String nganhHoc) { // phương thức xử lý tốt nghiệp cho một sinh viên
         SinhVien sinhVien = null;
         ArrayList<SinhVien> listSV = new ArrayList<>();
         ArrayList<MonHoc> monHocList = new ArrayList<>();
@@ -142,7 +144,7 @@ public class TotNghiep extends javax.swing.JPanel {
         return sinhVien;
     }
     
-    private List<SinhVien> layDanhSachSinhVien() {
+    private List<SinhVien> layDanhSachSinhVien() { // phương thức lấy danh sách sinh viên từ cơ sở dữ liệu
         SinhVien sinhVien = null;
         ArrayList<SinhVien> listSV = new ArrayList<>();
          try {

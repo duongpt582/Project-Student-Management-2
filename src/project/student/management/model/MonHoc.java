@@ -6,7 +6,7 @@ package project.student.management.model;
 
 /**
  *
- * @author duongpt
+ * @author Pham Thai Duong 20207595
  */
 public class MonHoc {
     private String tenMonHoc;

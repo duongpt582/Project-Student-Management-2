@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-// do van hai 20207600
 package project.student.management.view;
 import java.util.*;
 import javax.swing.table.DefaultTableModel;

@@ -8,7 +8,7 @@ import project.student.management.model.SinhVien;
 
 /**
  *
- * @author ASUS
+ * @author Pham Thai Duong 20207595
  */
 public interface XetTotNghiep {
     public boolean xetTotNghiep(SinhVien sinhVien);

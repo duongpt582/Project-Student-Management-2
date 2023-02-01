@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author ASUS
+ * @author Pham Thai Duong 20207595
  */
 public class SinhVienCTMau extends SinhVien{
     private int soMonHocHoanThanh;

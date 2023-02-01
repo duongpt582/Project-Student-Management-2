@@ -9,7 +9,7 @@ import project.student.management.interfaces.XetTotNghiep;
 
 /**
  *
- * @author duongpt
+ * @author Pham Thai Duong 20207595
  */
 public abstract class SinhVien implements XetTotNghiep{
     public static enum LoaiSinhVien{

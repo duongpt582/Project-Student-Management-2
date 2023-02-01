@@ -142,15 +142,16 @@ public class QuanLyImpl implements QuanLy{
     }
 
     @Override
-    public List<SinhVien> timKiemSVTheoMon(String valueSearch) {
+    public List<SinhVien> timKiemSVTheoMon(String valueSearch) { // ghi đè phương thức tìm kiếm sinh viên theo môn học - Pham Thai Duong 20207595
         List<SinhVien> listSV = new ArrayList<SinhVien>();
         SinhVien sinhVien = null;
         try {
-            conn = DBConnection.getConnection();
-            ps = conn.prepareStatement("SELECT * FROM dsdk t1, monhoc t2, dssv t3 WHERE t1.maMonHoc LIKE ? AND t2.maMonHoc = t1.maMonHoc AND t3.maSV = t1.maSV ");
-            ps.setString(1, "%" + valueSearch + "%");
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            conn = DBConnection.getConnection(); // tạo kết nối cơ sở dữ liệu
+            ps = conn.prepareStatement("SELECT * FROM dsdk t1, monhoc t2, dssv t3 WHERE t1.maMonHoc LIKE ? AND t2.maMonHoc = t1.maMonHoc AND t3.maSV = t1.maSV "); // câu lệnh truy vấn cơ sở dữ liệu
+            ps.setString(1, "%" + valueSearch + "%"); // gán giá trị tham số truyền vào cho tham số ở câu truy vấn
+            ResultSet rs = ps.executeQuery(); // gán đối tượng tìm được vào biến "rs" kiểu ResultSet
+            while(rs.next()){ // lưu các giá trị của các thuộc tính từ sinh viên tìm được vào các biến, 
+                            // đồng thời khởi tạo đối tượng "sinhVien" mang các thuộc tính đó và thêm vào list sinh viên
                 String loaiSV = rs.getString("loaiSV");
                 String hoTen = rs.getString("hoTen");
                 String maSV = rs.getString("maSV");
@@ -175,11 +176,11 @@ public class QuanLyImpl implements QuanLy{
                     sinhVien = new SinhVienTinChi(hoTen, maSV, khoaHoc, nganhHoc, monHocArrayList);
                 listSV.add(sinhVien);
             }
-            
+            conn.close(); // đóng kết nối cơ sở dữ liệu
         } catch (SQLException ex) {
             Logger.getLogger(QuanLyImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return listSV;
+        return listSV; // trả về list sinh viên
     }
     
     
@@ -220,13 +221,13 @@ public class QuanLyImpl implements QuanLy{
     }
 
     @Override
-    public List<SinhVien> inDSSVDuocTotNghiep(List<SinhVien> sinhViens) {
+    public List<SinhVien> inDSSVDuocTotNghiep(List<SinhVien> sinhViens) { // ghi đè phương thức in danh sách sinh viên được tốt nghiệp - Pham Thai Duong 20207595
         
         SinhVien sinhVien = new SinhVien() {};
         
         List<SinhVien> sinhVienList = new ArrayList<>();
         
-        for (int i = 0; i < sinhViens.size(); i++) {
+        for (int i = 0; i < sinhViens.size(); i++) { // duyệt các đối tượng của sinhVienList và kiểm tra có được tốt nghiệp hay không
             if (sinhViens.get(i) != null) {
                 boolean duocTotNghiep = sinhVien.xetTotNghiep(sinhViens.get(i));
                 System.out.println("duoc tot nghiep: " + sinhViens.get(i).getHoTen() + "---> " + duocTotNghiep);
