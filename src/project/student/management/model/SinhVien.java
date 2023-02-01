@@ -12,6 +12,10 @@ import project.student.management.interfaces.XetTotNghiep;
  * @author duongpt
  */
 public abstract class SinhVien implements XetTotNghiep{
+    public static enum LoaiSinhVien{
+        TC, CTM;
+    }
+    
     private String hoTen;
     private String maSV;
     private String gioiTinh;
@@ -41,6 +45,19 @@ public abstract class SinhVien implements XetTotNghiep{
         this.khoaHoc = khoaHoc;
         this.nganhHoc = nganhHoc;
     }
+
+    public SinhVien(String hoTen, String maSV, int khoaHoc, String nganhHoc, ArrayList<MonHoc> listMonHoc) {
+        this.hoTen = hoTen;
+        this.maSV = maSV;
+        this.khoaHoc = khoaHoc;
+        this.nganhHoc = nganhHoc;
+        this.listMonHoc = listMonHoc;
+    }
+
+    public SinhVien() {
+    }
+
+    
 
     public String getHoTen() {
         return hoTen;
@@ -107,8 +124,24 @@ public abstract class SinhVien implements XetTotNghiep{
     }
 
     @Override
-    public boolean xetTotNghiep() {
-        return true;
+    public boolean xetTotNghiep(SinhVien sinhvien) {
+        if (sinhvien instanceof SinhVienCTMau) {
+            if (((SinhVienCTMau) sinhvien).getDiemTB() > 5.0 &&
+                    ((SinhVienCTMau) sinhvien).getDiemTB() <= 10.0 
+                    && ((SinhVienCTMau) sinhvien).getSoMonHocHoanThanh() == 5) {
+                return true;
+            } else {
+                return false;
+            }
+        } else if (sinhvien instanceof SinhVienTinChi) {
+            if (((SinhVienTinChi) sinhvien).getSoTinChiHoanThanh() == ((SinhVienTinChi) sinhvien).getTongSoTinChi()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        
+        return false;
     }
     
     

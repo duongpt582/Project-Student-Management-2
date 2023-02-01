@@ -16,7 +16,8 @@ public interface QuanLy {
     public void xoaSV(String maSV);
     public void suaThongTinSV(String maSV, SinhVien sinhVien);
     public List<SinhVien> timKiemSV(String valueSearch);
+    public List<SinhVien> timKiemSVTheoMon(String valueSearch);
     public List<SinhVien> inDSSV(String loaiSV);
-    public List<SinhVien> inDSSVDuocTotNghiep();
+    public List<SinhVien> inDSSVDuocTotNghiep(List<SinhVien> sinhViens);
     
 }

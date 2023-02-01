@@ -14,6 +14,7 @@ import project.student.management.model.SinhVien;
 import project.student.management.model.SinhVienCTMau;
 import project.student.management.model.SinhVienTinChi;
 import project.student.management.database.DBConnection;
+import project.student.management.model.MonHoc;
 
 /**
  *
@@ -129,6 +130,49 @@ public class QuanLyImpl implements QuanLy{
     }
 
     @Override
+    public List<SinhVien> timKiemSVTheoMon(String valueSearch) {
+        List<SinhVien> listSV = new ArrayList<SinhVien>();
+        SinhVien sinhVien = null;
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement("SELECT * FROM dsdk t1, monhoc t2, dssv t3 WHERE t1.maMonHoc LIKE ? AND t2.maMonHoc = t1.maMonHoc AND t3.maSV = t1.maSV ");
+            ps.setString(1, "%" + valueSearch + "%");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                String loaiSV = rs.getString("loaiSV");
+                String hoTen = rs.getString("hoTen");
+                String maSV = rs.getString("maSV");
+                String tenMonHoc = rs.getString("tenMonHoc");
+                String maMonHoc = rs.getString("maMonHoc");
+                int soTinChi = rs.getInt("soTinChi");
+                double trongSo = rs.getDouble("trongSo");
+                double diemGK = rs.getDouble("diemGK");
+                double diemCK = rs.getDouble("diemCK");
+                String hocKy = rs.getString("hocKy");
+                int khoaHoc = rs.getInt("khoaHoc");
+                String nganhHoc = rs.getString("nganhHoc");
+                
+                MonHoc monHoc = new MonHoc(tenMonHoc, maMonHoc, hocKy, trongSo, diemGK, diemCK, soTinChi);
+                ArrayList<MonHoc> monHocArrayList = new ArrayList<>();
+                monHocArrayList.add(monHoc);
+                System.out.println("size array: " + monHocArrayList.size());
+                
+                if(loaiSV.equals("CTM"))
+                    sinhVien = new SinhVienCTMau(hoTen, maSV, khoaHoc, nganhHoc, monHocArrayList);
+                else
+                    sinhVien = new SinhVienTinChi(hoTen, maSV, khoaHoc, nganhHoc, monHocArrayList);
+                listSV.add(sinhVien);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(QuanLyImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listSV;
+    }
+    
+    
+
+    @Override
     public List<SinhVien> inDSSV(String loaiSV) {
         List<SinhVien> listSV = new ArrayList<SinhVien>();
         SinhVien sinhVien = null;
@@ -163,9 +207,29 @@ public class QuanLyImpl implements QuanLy{
     }
 
     @Override
-    public List<SinhVien> inDSSVDuocTotNghiep() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<SinhVien> inDSSVDuocTotNghiep(List<SinhVien> sinhViens) {
+        
+        SinhVien sinhVien = new SinhVien() {};
+        
+        List<SinhVien> sinhVienList = new ArrayList<>();
+        
+        for (int i = 0; i < sinhViens.size(); i++) {
+            if (sinhViens.get(i) != null) {
+                boolean duocTotNghiep = sinhVien.xetTotNghiep(sinhViens.get(i));
+                System.out.println("duoc tot nghiep: " + sinhViens.get(i).getHoTen() + "---> " + duocTotNghiep);
+                
+                if (duocTotNghiep) {
+                    sinhVienList.add(sinhViens.get(i));
+                }
+            }
+        }
+        
+        return sinhVienList;
     }
+    
+   
+
+    
 
    
 }

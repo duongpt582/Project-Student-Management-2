@@ -24,6 +24,19 @@ public class SinhVienCTMau extends SinhVien{
         super(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
     }
 
+    public SinhVienCTMau(String hoTen, String maSV, int khoaHoc, String nganhHoc, ArrayList<MonHoc> listMonHoc) {
+        super(hoTen, maSV, khoaHoc, nganhHoc, listMonHoc);
+    }
+
+    public SinhVienCTMau(String hoTen, String maSV, String gioiTinh, String ngaySinh, String email, int khoaHoc, String nganhHoc, ArrayList<MonHoc> listMonHoc) {
+        super(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc, listMonHoc);
+    }
+    
+    
+    
+    
+
+    
     public int getSoMonHocHoanThanh() {
         return soMonHocHoanThanh;
     }
@@ -38,12 +51,6 @@ public class SinhVienCTMau extends SinhVien{
 
     public void setDiemTB(double diemTB) {
         this.diemTB = diemTB;
-    }
-    
-    @Override
-    public boolean xetTotNghiep() {
-        super.xetTotNghiep(); 
-        return true;
     }
     
     

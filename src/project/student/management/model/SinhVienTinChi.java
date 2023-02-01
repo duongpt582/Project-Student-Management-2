@@ -12,6 +12,7 @@ import java.util.ArrayList;
  */
 public class SinhVienTinChi extends SinhVien{
     private int soTinChiHoanThanh;
+    private int tongSoTinChi;
 
     public SinhVienTinChi(int soTinChiHoanThanh, String hoTen, String maSV, String gioiTinh, String ngaySinh, String email, int khoaHoc, String nganhHoc, ArrayList<MonHoc> listMonHoc) {
         super(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc, listMonHoc);
@@ -22,6 +23,38 @@ public class SinhVienTinChi extends SinhVien{
         super(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc);
     }
 
+    public SinhVienTinChi(String hoTen, String maSV, int khoaHoc, String nganhHoc, ArrayList<MonHoc> listMonHoc) {
+        super(hoTen, maSV, khoaHoc, nganhHoc, listMonHoc);
+    }
+
+    public SinhVienTinChi(int soTinChiHoanThanh, int tongSoTinChi, String hoTen, String maSV, String gioiTinh, String ngaySinh, String email, int khoaHoc, String nganhHoc, ArrayList<MonHoc> listMonHoc) {
+        super(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc, listMonHoc);
+        this.soTinChiHoanThanh = soTinChiHoanThanh;
+        this.tongSoTinChi = tongSoTinChi;
+    }
+
+    public SinhVienTinChi(int soTinChiHoanThanh, int tongSoTinChi) {
+        this.soTinChiHoanThanh = soTinChiHoanThanh;
+        this.tongSoTinChi = tongSoTinChi;
+    }
+
+    public SinhVienTinChi(String hoTen, String maSV, String gioiTinh, String ngaySinh, String email, int khoaHoc, String nganhHoc, ArrayList<MonHoc> listMonHoc) {
+        super(hoTen, maSV, gioiTinh, ngaySinh, email, khoaHoc, nganhHoc, listMonHoc);
+    }
+    
+    
+    
+    
+
+    public int getTongSoTinChi() {
+        return tongSoTinChi;
+    }
+
+    public void setTongSoTinChi(int tongSoTinChi) {
+        this.tongSoTinChi = tongSoTinChi;
+    }
+    
+
     public int getSoTinChiHoanThanh() {
         return soTinChiHoanThanh;
     }
@@ -30,11 +63,6 @@ public class SinhVienTinChi extends SinhVien{
         this.soTinChiHoanThanh = soTinChiHoanThanh;
     }
 
-    @Override
-    public boolean xetTotNghiep() {
-        super.xetTotNghiep(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-        return false;
-    }
     
     
 }

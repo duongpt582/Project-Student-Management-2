@@ -4,10 +4,12 @@
  */
 package project.student.management.interfaces;
 
+import project.student.management.model.SinhVien;
+
 /**
  *
  * @author ASUS
  */
 public interface XetTotNghiep {
-    public boolean xetTotNghiep();
+    public boolean xetTotNghiep(SinhVien sinhVien);
 }
