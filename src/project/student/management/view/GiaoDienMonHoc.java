@@ -310,7 +310,6 @@ public class GiaoDienMonHoc extends javax.swing.JPanel {
 
     private void themdiemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themdiemButtonActionPerformed
         // TODO add your handling code here:
-       
         String maSV = maSVTextField.getText();
         String nganhHoc = nganhhocCombobox.getItemAt(nganhhocCombobox.getSelectedIndex());
         String monHoc = monHocCombobox2.getItemAt(monHocCombobox2.getSelectedIndex());
@@ -343,9 +342,7 @@ public class GiaoDienMonHoc extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Them that bai!");
             Logger.getLogger(QuanLyImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-
+               
     }//GEN-LAST:event_themdiemButtonActionPerformed
 
     private void nganhhocComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nganhhocComboboxActionPerformed
