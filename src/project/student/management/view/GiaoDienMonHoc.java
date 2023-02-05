@@ -318,33 +318,51 @@ public class GiaoDienMonHoc extends javax.swing.JPanel {
         String nganhHoc = nganhhocCombobox.getItemAt(nganhhocCombobox.getSelectedIndex());
         String monHoc = monHocCombobox2.getItemAt(monHocCombobox2.getSelectedIndex());
         String kyHoc = kyHocTextField.getText();
-        double diemGK = Double.valueOf(diemgkTextField.getText());
-        double diemCK = Double.valueOf(diemckTextField.getText());
+         double diemGK, diemCK;
+        if (diemgkTextField.getText().isEmpty()) {
+             diemGK = 0;
+        } else {
+             diemGK = Double.valueOf(diemgkTextField.getText());
+        }
+        
+        if (diemckTextField.getText().isEmpty()) {
+             diemCK = 0;
+        } else {
+             diemCK = Double.valueOf(diemckTextField.getText());
+        }
         
         List<MonHoc> danhSachTatCaMonHoc = layDanhSachTatCaMonHoc();
         String maMonHoc = null;
         for (int i = 0; i < danhSachTatCaMonHoc.size(); i++) {
-            if (monHoc.equals(danhSachTatCaMonHoc.get(i).getTenMonHoc())) {
-                maMonHoc = danhSachTatCaMonHoc.get(i).getMaMonHoc();
+            if (monHoc != null) {
+                if (monHoc.equals(danhSachTatCaMonHoc.get(i).getTenMonHoc())) {
+                     maMonHoc = danhSachTatCaMonHoc.get(i).getMaMonHoc();
+                }
             }
+            
         }
 
-        try {
-            conn = DBConnection.getConnection();
-            ps = conn.prepareStatement("INSERT INTO `dsdk`(`maSV`, `maMonHoc`, `hocKy`, `diemGK`, `diemCK`) VALUES (?, ?, ?, ?, ?)");
-             
-            ps.setString(1, maSV);
-            ps.setString(2, maMonHoc);
-            ps.setString(3, kyHoc);
-            ps.setDouble(4, diemGK);
-            ps.setDouble(5, diemCK);
+        if (maSV != null && nganhHoc != null && monHoc != null && kyHoc != null) {
             
-            ps.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null, "Them thành công!");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Them that bai!");
-            Logger.getLogger(QuanLyImpl.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                conn = DBConnection.getConnection();
+                ps = conn.prepareStatement("INSERT INTO `dsdk`(`maSV`, `maMonHoc`, `hocKy`, `diemGK`, `diemCK`) VALUES (?, ?, ?, ?, ?)");
+
+                ps.setString(1, maSV);
+                ps.setString(2, maMonHoc);
+                ps.setString(3, kyHoc);
+                ps.setDouble(4, diemGK);
+                ps.setDouble(5, diemCK);
+
+                ps.executeUpdate();
+
+                JOptionPane.showMessageDialog(null, "Thêm thành công!");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Thêm thất bại!");
+                Logger.getLogger(QuanLyImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Thêm thất bại!");
         }
                
     }//GEN-LAST:event_themdiemButtonActionPerformed
